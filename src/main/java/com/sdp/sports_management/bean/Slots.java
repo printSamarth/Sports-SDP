@@ -1,104 +1,70 @@
+
 package com.sdp.sports_management.bean;
 
-import javax.persistence.*;
+import java.sql.Time;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.*;
 
 @Entity
 @Table
-public class Venue {
+public class Slots {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int venue_id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int slot_id;
+
     @Column
-    private String venueName;
+    private Time start_time;
+
     @Column
-    private String venueAddress;
+    private Time end_time;
+
     @Column
-    private float costPerHour;
-    @Column
-    private String games;
-    @Column
-    private String img_link;
+    private int grounds;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "slots")
+    private Set<Venue> venues = new HashSet<>();
 
 
-    @OneToMany(mappedBy = "venue",
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-    private List<Booking> bookings;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "venue_slots",
-            joinColumns = {@JoinColumn(name ="venue_id")},
-            inverseJoinColumns = {@JoinColumn(name = "slot_id")}
-    )
-    private Set<Slots> slots= new HashSet<>();
+    public Slots(){}
 
-
-    public Venue(){}
-
-    public Venue(String venueName, String venueAddress, float costPerHour, String games, String img_link) {
-        this.venueName = venueName;
-        this.venueAddress = venueAddress;
-        this.costPerHour = costPerHour;
-        this.games = games;
-        this.img_link = img_link;
+    public Slots(Time start_time, Time end_time, Integer grounds) {
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.grounds = grounds;
     }
 
-    public int getVenue_id() {
-        return venue_id;
+    public int getGrounds() {
+        return grounds;
     }
 
-    public void setVenue_id(int venue_id) {
-        this.venue_id = venue_id;
+    public void setGrounds(int grounds) {
+        this.grounds = grounds;
     }
 
-    public Set<Slots> getSlots() {
-        return slots;
+    public int getSlot_id() {
+        return slot_id;
     }
 
-    public void setSlots(Set<Slots> slots) {
-        this.slots = slots;
+    public void setSlot_id(int slot_id) {
+        this.slot_id = slot_id;
     }
 
-    public String getVenueName() {
-        return venueName;
+    public Time getStart_time() {
+        return start_time;
     }
 
-    public void setVenueName(String venueName) {
-        this.venueName = venueName;
+    public void setStart_time(Time start_time) {
+        this.start_time = start_time;
     }
 
-    public String getVenueAddress() {
-        return venueAddress;
+    public Time getEnd_time() {
+        return end_time;
     }
 
-    public void setVenueAddress(String venueAddress) {
-        this.venueAddress = venueAddress;
-    }
-
-    public float getCostPerHour() {
-        return costPerHour;
-    }
-
-    public void setCostPerHour(float costPerHour) {
-        this.costPerHour = costPerHour;
-    }
-
-    public String getGames() {
-        return games;
-    }
-
-    public void setGames(String games) {
-        this.games = games;
-    }
-
-    public String getImg_link() {
-        return img_link;
-    }
-
-    public void setImg_link(String img_link) {
-        this.img_link = img_link;
+    public void setEnd_time(Time end_time) {
+        this.end_time = end_time;
     }
 }
