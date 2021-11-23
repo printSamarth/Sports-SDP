@@ -25,6 +25,8 @@ public class Booking {
     @Column
     private Date booking_date;
 
+    @Column
+    private int tournament_id;
 //    @Column
 //    private Time booking_time;
 
@@ -86,5 +88,13 @@ public class Booking {
 
     public void setSlot(int slot) {
         this.slot = slot;
+    }
+
+    public int getTournament_id() {
+        return tournament_id;
+    }
+
+    public void setTournament_id(int tournament_id) {
+        this.tournament_id = tournament_id;
     }
 }

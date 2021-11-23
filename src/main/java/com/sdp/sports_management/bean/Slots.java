@@ -20,8 +20,6 @@ public class Slots {
     @Column
     private Time end_time;
 
-    @Column
-    private int grounds;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "slots")
     private Set<Venue> venues = new HashSet<>();
@@ -33,16 +31,10 @@ public class Slots {
     public Slots(Time start_time, Time end_time, Integer grounds) {
         this.start_time = start_time;
         this.end_time = end_time;
-        this.grounds = grounds;
+
     }
 
-    public int getGrounds() {
-        return grounds;
-    }
 
-    public void setGrounds(int grounds) {
-        this.grounds = grounds;
-    }
 
     public int getSlot_id() {
         return slot_id;
