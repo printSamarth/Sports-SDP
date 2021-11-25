@@ -1,4 +1,6 @@
 package com.sdp.sports_management.bean;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -14,7 +16,7 @@ public class Team {
     @OneToMany(mappedBy = "userId",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
-    private List<User>  members;
+    private List<User> members;
 
     public String getTeam_name() {
         return team_name;
@@ -43,3 +45,4 @@ public class Team {
     public int getTeam_id() {
         return team_id;
     }
+}

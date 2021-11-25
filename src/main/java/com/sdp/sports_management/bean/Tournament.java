@@ -22,7 +22,7 @@ public class Tournament {
     @OneToMany(mappedBy = "team_id",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
-    private List<Teams>  teams;
+    private List<Team>  teams;
 
     public int getTournament_id() {
         return tournament_id;
@@ -64,11 +64,11 @@ public class Tournament {
         this.max_team = max_team;
     }
 
-    public List<Teams> getTeams() {
+    public List<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(List<Teams> teams) {
+    public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
 }
