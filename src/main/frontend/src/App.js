@@ -4,7 +4,8 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
-// import Welcome from './components/Welcome'
+import Welcome from './components/Welcome'
+import UserSignInComponent from "./components/UserSignInComponent";
 import UserRegisterComponent from './components/UserRegisterComponent';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -24,8 +25,6 @@ class App extends React.Component {
       isloggedIn ,
       uId ,
       adminFlag
-
-
     }
     this.handleLogin = this.handleLogin.bind(this)
   }
@@ -33,7 +32,6 @@ class App extends React.Component {
   handleLogin(loggedIn,Id,isAdminFlag) {
     console.log(isAdminFlag)
     this.setState({ isloggedIn: loggedIn , uId: Id,adminFlag:isAdminFlag});
-
   }
 
   render(){
@@ -45,8 +43,9 @@ class App extends React.Component {
             <div className="container">
               <Switch>
                 <Route path="/" exact component={First}></Route>
+                <Route path="/Welcome"   render={()=> <Welcome isloggedIn={this.state.isloggedIn}/>}></Route>
                 <Route path="/userRegisterComponent" component={UserRegisterComponent}></Route>
-
+                <Route path="/userSignInComponent" render={(props) => <UserSignInComponent {...props} handleLog = {this.handleLogin} />}></Route>
               </Switch>
             </div>
             <FooterComponent/>
