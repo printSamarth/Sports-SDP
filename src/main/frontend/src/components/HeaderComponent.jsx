@@ -46,6 +46,12 @@ class HeaderComponent extends Component {
                                         </Link>
                                     </li>
 
+                                    <li className="nav-item">
+                                        <Link to="/CreateTournament">
+                                            <a className="nav-link " href="" tabindex="-1" aria-disabled="true">Create Tournament</a>
+                                        </Link>
+                                    </li>
+
                                     {/* <li className="nav-item">
           <a className="nav-link " href="" tabindex="-1" aria-disabled="true">Events</a>
         </li> */}

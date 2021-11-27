@@ -7,7 +7,7 @@ import FooterComponent from './components/FooterComponent';
 import Welcome from './components/Welcome'
 import UserSignInComponent from "./components/UserSignInComponent";
 import UserRegisterComponent from './components/UserRegisterComponent';
-
+import CreateTournament from './components/CreateTournament';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import First from './components/First';
@@ -45,6 +45,7 @@ class App extends React.Component {
                 <Route path="/" exact component={First}></Route>
                 <Route path="/Welcome"   render={()=> <Welcome isloggedIn={this.state.isloggedIn}/>}></Route>
                 <Route path="/userRegisterComponent" component={UserRegisterComponent}></Route>
+                <Route path="/CreateTournament" component={CreateTournament}></Route>
                 <Route path="/userSignInComponent" render={(props) => <UserSignInComponent {...props} handleLog = {this.handleLogin} />}></Route>
               </Switch>
             </div>
