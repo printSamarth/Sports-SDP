@@ -104,8 +104,6 @@ class UserSignInComponent extends Component {
                 if(!this.state.loggedIn)
                 {
                     alert("Username or Password doesn't Match!");
-
-
                 }
                 // window.location.reload(true);
             });

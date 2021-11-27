@@ -4,6 +4,7 @@ import com.sdp.sports_management.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -75,7 +76,7 @@ public class UserController {
         }
         else {
 //            logger.error("[Login by user failed] ");
-            return null;
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
 
