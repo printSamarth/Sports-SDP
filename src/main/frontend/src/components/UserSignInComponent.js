@@ -135,7 +135,7 @@ class UserSignInComponent extends Component {
                                         <input placeholder="Email Address" name="emailId" type="email" className="form-control"
                                                required
                                                value={this.state.emailId} onChange={this.changeEmailHandler}
-                                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                            //    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                         />
                                     </div>
 
@@ -144,7 +144,7 @@ class UserSignInComponent extends Component {
                                         <input placeholder="Password" name="password" type="password"  className="form-control"
                                                required
                                                value={this.state.password} onChange={this.changePasswordHandler}
-                                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                            //    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                         />
                                     </div>
                                     <br></br>
