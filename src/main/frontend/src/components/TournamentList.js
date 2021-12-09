@@ -65,7 +65,7 @@ class TournamentList extends Component {
                     sportName={tournament.sportName}
                     maxTeam={tournament.maxTeam}
                     noTeam={tournament.noTeam}
-                    captainId={tournament.captainId}
+                    
 
                     // userId={this.state.userId}
                 />

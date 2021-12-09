@@ -9,8 +9,7 @@ class TournamentComponent extends Component {
             tournamentId: this.props.tournamentId,
             sportName: this.props.sportName,
             maxTeam: this.props.maxTeam,
-            noTeam: this.props.noTeam,
-            captainId: this.props.captainId //add captainId to team bean
+            noTeam: this.props.noTeam
             
         }   
     }
@@ -29,7 +28,6 @@ class TournamentComponent extends Component {
                 <p>Max Teams:{this.state.maxTeam}</p>
                 
                 <p>No. of Teams:{this.state.noTeam} </p>
-                <p>Captain Id:{this.state.captainId} </p>
                 
                 <Link to={{pathname:'/TeamList',tournamentId:this.state.tournamentId }}>
                     <button className="btn btn-primary">Individual Participation</button>

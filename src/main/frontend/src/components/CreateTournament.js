@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TournamentService from '../services/TournamentService'
+import TournamentService from '../services/TeamService'
 //import VenueService from "../services/VenueService"
 
 import DatePicker from 'react-datepicker'
@@ -31,6 +31,13 @@ class CreateTournament extends Component {
             [name]: value
         })
     }
+    /* 
+        ------------------------------------------
+        Commentd Venue population code as of now.
+        ------------------------------------------
+
+    */
+
     // componentDidMount(){
     //    VenueService.getVenue().then( res => {
     //         this.setState({venueData : res.data});

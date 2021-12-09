@@ -18,6 +18,12 @@ public class Team {
             cascade = CascadeType.ALL)
     private List<User> members;
 
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tournament_id")
+    private Tournament  tournamentId;
+
     public String getTeam_name() {
         return team_name;
     }
@@ -44,5 +50,13 @@ public class Team {
 
     public int getTeam_id() {
         return team_id;
+    }
+
+    public Tournament getTournamentId() {
+        return tournamentId;
+    }
+
+    public void setTournamentId(Tournament tournamentId) {
+        this.tournamentId = tournamentId;
     }
 }
