@@ -56,7 +56,7 @@ public class UserController {
         return userService.updateUser(id, user);
     }
 
-    //@PostMapping("/user/login")
+    @PostMapping("/user/login")
     public ResponseEntity<User> login(@RequestBody User user) {
 
 
