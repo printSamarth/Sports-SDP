@@ -155,7 +155,7 @@ class CreateTournament extends Component {
                                             style={{borderRadius:"25px"}}/>
                                         </div>
 
-                                        <div>
+                                        {/* <div>
                                             <label> Venue: </label>
                                             <select class="form-control"  name="venue_id" value={this.state.venue_id}  
                                             style={{borderRadius:"25px"}} onChange={this.handleChange}>
@@ -167,7 +167,7 @@ class CreateTournament extends Component {
                                                         </option>    
                                                                 ) )} 
                                             </select>
-                                         </div>
+                                         </div> */}
 
                                         <div className = "form-group">
                                             <label> Number Of Teams </label>
