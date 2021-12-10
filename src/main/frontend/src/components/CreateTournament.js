@@ -53,9 +53,9 @@ class CreateTournament extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let tournament = {sportName: this.state.sportName, tournamentDate: this.state.tournamentDate, tournamentTime : this.state.tournamentTime,
-            noTeams:this.state.noTeams, chargesPerTeam :this.state.chargesPerTeam, venue_id:{venue_id:this.state.venue_id} ,
-            joinedTeam:this.state.joinedTeam, creatorUserId:sessionStorage.getItem("user_id")} ;  
+        let tournament = {gameName: this.state.sportName,
+            maxTeams:this.state.noTeams,
+            teamCount:this.state.joinedTeam, timeTable: ""} ;  
         console.log('activity => ' + JSON.stringify(tournament));
 
         // step 5is_admin_flag
