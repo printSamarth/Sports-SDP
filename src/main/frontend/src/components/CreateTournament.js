@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TournamentService from '../services/TeamService'
+import TournamentService from '../services/TournamentService'
 //import VenueService from "../services/VenueService"
 
 import DatePicker from 'react-datepicker'
@@ -65,7 +65,7 @@ class CreateTournament extends Component {
                 alert("Tournament Created!")
                 this.props.history.push({pathname:'/TournamentList'});
             });
-        // }else{
+        // // }else{
         //     UserService.updateUser(user, this.state.id).then( res => {
         //         this.props.history.push('/users');
         //     });

@@ -33,7 +33,7 @@ class TournamentComponent extends Component {
                     <button className="btn btn-primary">Individual Participation</button>
                 </Link>
 
-                <Link to={{pathname:'/CreateTeam',tournamentId:this.state.tournamentId }}>
+                <Link to={{pathname:'/CreateTeam',tournamentId:this.state.tournamentId, sportName: this.state.sportName }}>
                     <button className="btn btn-primary">Team Participation</button>
                 </Link>
             </div>
