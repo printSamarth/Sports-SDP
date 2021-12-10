@@ -1,15 +1,33 @@
 package com.sdp.sports_management.tournament;
 
-import com.sdp.sports_management.bean.Team;
 import com.sdp.sports_management.team.TeamDto;
 
 import java.util.List;
 import java.util.Objects;
 
 public class TournamentDto {
+    private Integer tournamentId;
     private String timeTable;
     private String gameName;
     private List<TeamDto> teams;
+    private Integer maxTeams;
+    private Integer teamCount;
+
+    public Integer getTeamCount() {
+        return teamCount;
+    }
+
+    public void setTeamCount(Integer teamCount) {
+        this.teamCount = teamCount;
+    }
+
+    public Integer getMaxTeams() {
+        return maxTeams;
+    }
+
+    public void setMaxTeams(Integer maxTeams) {
+        this.maxTeams = maxTeams;
+    }
 
     public String getTimeTable() {
         return timeTable;
@@ -35,16 +53,24 @@ public class TournamentDto {
         this.teams = teams;
     }
 
+    public Integer getTournamentId() {
+        return tournamentId;
+    }
+
+    public void setTournamentId(Integer tournamentId) {
+        this.tournamentId = tournamentId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TournamentDto that = (TournamentDto) o;
-        return Objects.equals(timeTable, that.timeTable) && Objects.equals(gameName, that.gameName) && Objects.equals(teams, that.teams);
+        return Objects.equals(tournamentId, that.tournamentId) && Objects.equals(timeTable, that.timeTable) && Objects.equals(gameName, that.gameName) && Objects.equals(teams, that.teams);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timeTable, gameName, teams);
+        return Objects.hash(tournamentId, timeTable, gameName, teams);
     }
 }

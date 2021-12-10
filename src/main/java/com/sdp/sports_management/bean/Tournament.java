@@ -9,7 +9,7 @@ import java.util.List;
 public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tournament_id;
+    private int tournamentId;
     @Column
     private String game_name;
     @Column
@@ -19,17 +19,17 @@ public class Tournament {
     @Column
     private int max_team;
 
-    @OneToMany(mappedBy = "team_id",
+    @OneToMany(mappedBy = "teamId",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
-    private List<Team>  teams;
+    private List<Team> teams;
 
     public int getTournament_id() {
-        return tournament_id;
+        return tournamentId;
     }
 
     public void setTournament_id(int tournament_id) {
-        this.tournament_id = tournament_id;
+        this.tournamentId = tournament_id;
     }
 
     public String getGame_name() {
