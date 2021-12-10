@@ -35,6 +35,8 @@ public class TeamTransformer {
 
     public List<Team> toEntities(List<TeamDto> teams) {
         List<Team> teamList = new ArrayList<>();
+
+        if(teams == null) return teamList;
         for (TeamDto dto : teams) {
             teamList.add(toEntity(dto));
         }
