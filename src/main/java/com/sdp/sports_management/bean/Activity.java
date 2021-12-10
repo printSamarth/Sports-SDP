@@ -41,8 +41,8 @@ public class Activity {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "venue_id")
-//    private Venue venue_id;
+    @JoinColumn(name = "venue_id")
+    private Venue venue_id;
 
     public int getActivity_id() {
         return activity_id;
@@ -104,13 +104,13 @@ public class Activity {
         this.creatorUserId = creatorUserId;
     }
 
-//    public Venue getVenue_id() {
-//        return venue_id;
-//    }
+    public Venue getVenue_id() {
+        return venue_id;
+    }
 
-//    public void setVenue_id(Venue venue_id) {
-//        this.venue_id = venue_id;
-//    }
+    public void setVenue_id(Venue venue_id) {
+        this.venue_id = venue_id;
+    }
 
     public String getActivityTime() {
         return activityTime;
