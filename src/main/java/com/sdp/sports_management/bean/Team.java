@@ -1,4 +1,5 @@
 package com.sdp.sports_management.bean;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int team_id;
+    private int teamId;
     @Column
     private String team_name;
     @Column
@@ -49,7 +50,7 @@ public class Team {
     }
 
     public int getTeam_id() {
-        return team_id;
+        return teamId;
     }
 
     public Tournament getTournamentId() {
