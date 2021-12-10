@@ -8,6 +8,15 @@ public class TeamDto {
     private String teamName;
     private String gameName;
     List<UserDto> members;
+    private Integer teamId;
+
+    public Integer getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Integer teamId) {
+        this.teamId = teamId;
+    }
 
     public String getTeamName() {
         return teamName;

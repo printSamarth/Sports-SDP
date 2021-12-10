@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface TournamentService {
     List<TournamentDto> getAllTournaments();
+
+    TournamentDto getTournamentById(Integer tournamentId);
+
+    TournamentDto saveTournament(TournamentDto request);
 }
