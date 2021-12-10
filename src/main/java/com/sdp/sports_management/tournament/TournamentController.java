@@ -7,7 +7,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api")
 public class TournamentController {
     @Resource
     private TournamentService tournamentService;
@@ -24,6 +24,7 @@ public class TournamentController {
 
     @PutMapping("/tournament/save/")
     public TournamentDto saveTournament(TournamentDto request) {
+        System.out.println("Got request " + request);
         return tournamentService.saveTournament(request);
     }
 }
