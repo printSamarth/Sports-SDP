@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TournamentService from '../services/TournamentService'
-//import VenueService from "../services/VenueService"
+import VenueService from "../services/VenueService"
 
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
@@ -17,8 +17,10 @@ class CreateTournament extends Component {
             noTeams: "",    
             venueName: "",
             venue_id: " ",
+            // slot:"",
             chargesPerTeam: "",
-            joinedTeam:0
+            joinedTeam:0,
+            venueData:[]
         }
         
         this.handleChange = this.handleChange.bind(this)
@@ -76,9 +78,20 @@ class CreateTournament extends Component {
     //     this.setState({sportName: event.target.value});
     // }
 
-    // changeDateHandler= (event) => {
-    //     this.setState({date: event.target.value});
-    // }
+    changeDateHandler= (event) => {
+        this.setState({date: event.target.value});
+
+        
+               VenueService.getVenue().then( res => {
+                    this.setState({venueData : res.data});
+                    //console.log(this.state.venueData[0].venue_id+"-"+this.state.venueData[0].venueName)
+                })
+        
+                let data = sessionStorage.getItem('user_id');
+                console.log("userid",data)
+            
+
+    }
 
     // changeTimeHandler= (event) => {
     //     this.setState({time: event.target.value});
@@ -139,8 +152,22 @@ class CreateTournament extends Component {
                                            
                                             className="form-control" 
                                             value={this.state.tournamentDate} 
-                                            onChange={this.handleChange} style={{borderRadius:"25px"}}/>
+                                            onChange={this.changeDateHandler} style={{borderRadius:"25px"}}/>
                                         </div>
+
+                                         {/* <div>
+                                            <label> Slot: </label>
+                                            <select class="form-control"  name="slot_id" value={this.state.venue_id}  
+                                            style={{borderRadius:"25px"}} onChange={this.handleChange}>
+                                            
+                                            <option value=""> -- Select a Venue -- </option>
+                                            {this.state.venueData.map((data) => (
+                                            <option key={data.venue_id} value={data.venue_id}>
+                                                        {data.venueName+"-"+data.venueAddress}
+                                                        </option>    
+                                                                ) )} 
+                                            </select>
+                                         </div> */}
 
                                         {/* <DatePicker 
                                             selected={this.state.activityDate}
@@ -150,7 +177,7 @@ class CreateTournament extends Component {
                                             // dateFormat="yyyy-mm-dd"
                                             /> */}
 
-                                        <div className = "form-group">
+                                        {/* <div className = "form-group">
                                             <label> Time:</label>
                                             <input 
                                             placeholder="Time" 
@@ -160,9 +187,9 @@ class CreateTournament extends Component {
                                             value={this.state.tournamentTime} 
                                             onChange={this.handleChange} 
                                             style={{borderRadius:"25px"}}/>
-                                        </div>
+                                        </div> */}
 
-                                        {/* <div>
+                                        <div>
                                             <label> Venue: </label>
                                             <select class="form-control"  name="venue_id" value={this.state.venue_id}  
                                             style={{borderRadius:"25px"}} onChange={this.handleChange}>
@@ -174,7 +201,7 @@ class CreateTournament extends Component {
                                                         </option>    
                                                                 ) )} 
                                             </select>
-                                         </div> */}
+                                         </div>
 
                                         <div className = "form-group">
                                             <label> Number Of Teams </label>
@@ -207,6 +234,7 @@ class CreateTournament extends Component {
                                             className="form-control" 
                                             type="number"
                                             name="joinedTeams"
+                                            readOnly
                                             value={this.state.joinedTeam} 
                                             onChange={this.handleChange} 
                                             style={{borderRadius:"25px"}}/>
