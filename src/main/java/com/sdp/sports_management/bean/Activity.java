@@ -43,9 +43,11 @@ public class Activity {
     @JoinColumn(name = "venue_id")
     private Venue venue_id;
 
+
     public Activity() {
 
     }
+
 
     public int getActivity_id() {
         return activity_id;

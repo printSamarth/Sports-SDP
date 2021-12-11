@@ -1,17 +1,16 @@
 import axios from 'axios';
 
 const Venue_API_BASE_URL="http://localhost:8081/api/venue"
-class VenueService{
+class VenueService {
 
-    getVenue()
-    {
+    getVenue() {
+
         console.log("Caught in service");
         return axios.get(Venue_API_BASE_URL);   //get the data from the API mentioned
     }
 
-    createVenue(venue)
-    {
-        return axios.post(Venue_API_BASE_URL,venue);
+    createVenue(venue) {
+        return axios.post(Venue_API_BASE_URL, venue);
     }
 
     // getUserById(userId){
