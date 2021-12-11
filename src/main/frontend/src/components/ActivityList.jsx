@@ -59,18 +59,21 @@ class ActivityList extends Component {
                 </div>
             )
         const activityComponents = this.state.activityInfo.map((activity) => {
-            return (
-                <ActivityComponent
-                    activity_id={activity.activity_id}
-                    sportName={activity.sportName}
-                    activityDate={activity.activityDate}
-                    activityTime={activity.activityTime}
-                    numberOfPlayers={activity.numberOfPlayers}
-                    chargesPerPerson={activity.chargesPerPerson}
-                    venue_id={activity.venue_id.venue_id}
-                    // userId={this.state.userId}
-                />
-            )
+            if(activity.open)
+            {
+                return (
+                    <ActivityComponent
+                        activity_id={activity.activity_id}
+                        sportName={activity.sportName}
+                        activityDate={activity.activityDate}
+                        activityTime={activity.activityTime}
+                        numberOfPlayers={activity.numberOfPlayers}
+                        chargesPerPerson={activity.chargesPerPerson}
+                        venue_id={activity.venue_id.venue_id}
+                        // userId={this.state.userId}
+                    />
+                )
+            }
         })
         return (
             <div className="ActivityList">

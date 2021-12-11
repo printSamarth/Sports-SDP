@@ -11,7 +11,7 @@ import CreateTournament from './components/CreateTournament';
 import TournamentList from './components/TournamentList';
 import CreateTeam from './components/CreateTeam';
 import TeamList from './components/TeamList';
-
+import Venueshow from './components/Venueshow';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import First from './components/First';
@@ -50,6 +50,7 @@ class App extends React.Component {
                 <Route path="/Welcome"   render={()=> <Welcome isloggedIn={this.state.isloggedIn}/>}></Route>
                 <Route path="/userRegisterComponent" component={UserRegisterComponent}></Route>
                 <Route path="/CreateTournament" component={CreateTournament}></Route>
+                <Route path="/Venueshow" component={Venueshow}></Route>
                 <Route path="/userSignInComponent" render={(props) => <UserSignInComponent {...props} handleLog = {this.handleLogin} />}></Route>
                 <Route path="/TournamentList" component={TournamentList}></Route>
                 <Route path="/CreateTeam" component={CreateTeam}></Route>
