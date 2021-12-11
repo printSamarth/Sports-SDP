@@ -27,3 +27,18 @@ class UserService{
         console.log(user_id)
         return axios.put(ACTIVITY_API_BASE_URL_JOIN+'/'+activity_id)
     }
+    // getUserById(userId){
+    //     return axios.get(ACTIVITY_API_BASE_URL + '/' + userId);
+    // }
+
+    // updateUser(user, userId){
+    //     return axios.put(ACTIVITY_API_BASE_URL + '/' + userId, user);
+    // }
+
+    // deleteUser(userId){
+    //     return axios.delete(USER_API_BASE_URL + '/' + userId);
+    // }
+
+
+}
+export default new UserService()   //exporting the object of this class
