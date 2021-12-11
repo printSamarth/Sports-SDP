@@ -10,9 +10,9 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int teamId;
     @Column
-    private String team_name;
+    private String teamName;
     @Column
-    private String game_name;
+    private String gameName;
 
     @OneToMany(mappedBy = "userId",
             fetch = FetchType.EAGER,
@@ -20,25 +20,31 @@ public class Team {
     private List<User> members;
 
 
+    @ManyToOne
+    private Tournament tournamentId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "tournament_id")
-    private Tournament  tournamentId;
-
-    public String getTeam_name() {
-        return team_name;
+    public int getTeamId() {
+        return teamId;
     }
 
-    public void setTeam_name(String team_name) {
-        this.team_name = team_name;
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 
-    public String getGame_name() {
-        return game_name;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setGame_name(String game_name) {
-        this.game_name = game_name;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 
     public List<User> getMembers() {

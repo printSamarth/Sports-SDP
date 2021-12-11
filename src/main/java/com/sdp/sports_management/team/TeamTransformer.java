@@ -27,16 +27,15 @@ public class TeamTransformer {
     TeamDto toDto(Team team) {
         TeamDto dto = new TeamDto();
         dto.setTeamId(team.getTeam_id());
-        dto.setTeamName(team.getTeam_name());
-        dto.setGameName(team.getGame_name());
+        dto.setTeamName(team.getTeamName());
+        dto.setGameName(team.getGameName());
         dto.setMembers(userTransformer.toDtos(team.getMembers()));
         return dto;
     }
 
     public List<Team> toEntities(List<TeamDto> teams) {
         List<Team> teamList = new ArrayList<>();
-
-        if(teams == null) return teamList;
+        if (teams == null) return teamList;
         for (TeamDto dto : teams) {
             teamList.add(toEntity(dto));
         }
@@ -54,8 +53,8 @@ public class TeamTransformer {
                 throw new ResourceNotFoundException("Team with team id: " + dto.getTeamId() + " not found");
             }
         }
-        team.setTeam_name(dto.getTeamName());
-        team.setGame_name(team.getGame_name());
+        team.setTeamName(dto.getTeamName());
+        team.setGameName(dto.getGameName());
         team.setMembers(userTransformer.toEntities(dto.getMembers()));
         return team;
     }
