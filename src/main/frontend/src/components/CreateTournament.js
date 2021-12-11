@@ -86,16 +86,15 @@ class CreateTournament extends Component {
     // }
 
     changeDateHandler= (event) => {
-        this.setState({date: event.target.value});
+        this.setState({tournamentDate: event.target.value});
 
-        
-               VenueService.getVenue().then( res => {
-                    this.setState({venueData : res.data});
-                    //console.log(this.state.venueData[0].venue_id+"-"+this.state.venueData[0].venueName)
-                })
-        
-                let data = sessionStorage.getItem('user_id');
-                console.log("userid",data)
+        VenueService.getVenue().then( res => {
+            this.setState({venueData : res.data});
+            //console.log(this.state.venueData[0].venue_id+"-"+this.state.venueData[0].venueName)
+        })
+
+        let data = sessionStorage.getItem('user_id');
+        console.log("userid",data)
             
 
     }
