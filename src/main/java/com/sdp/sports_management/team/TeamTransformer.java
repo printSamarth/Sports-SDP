@@ -2,6 +2,7 @@ package com.sdp.sports_management.team;
 
 import com.sdp.sports_management.Exception.ResourceNotFoundException;
 import com.sdp.sports_management.bean.Team;
+import com.sdp.sports_management.bean.User;
 import com.sdp.sports_management.user.UserTransformer;
 import org.springframework.stereotype.Component;
 
@@ -56,6 +57,9 @@ public class TeamTransformer {
         team.setTeamName(dto.getTeamName());
         team.setGameName(dto.getGameName());
         team.setMembers(userTransformer.toEntities(dto.getMembers()));
+        for (User user : team.getMembers()) {
+            user.setTeamId(team);
+        }
         return team;
     }
 }
