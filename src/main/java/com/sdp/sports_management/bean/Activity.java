@@ -1,12 +1,7 @@
 package com.sdp.sports_management.bean;
-
-
-
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
-
 
 @Entity
 @Table
@@ -21,28 +16,34 @@ public class Activity {
     @Column
     private Date activityDate;
 
-
-
     @Column
     private String activityTime;
-
 
     @Column
     private int numberOfPlayers;
     @Column
     private int chargesPerPerson;
+
+
+
     @Column
     private int joinedPlayers;
 
-
+    @Column
+    private boolean open;
 
     @Column
     private int creatorUserId;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "venue_id")
     private Venue venue_id;
+
+
+    public Activity() {
+
+    }
+
 
     public int getActivity_id() {
         return activity_id;
@@ -68,7 +69,13 @@ public class Activity {
         this.activityDate = activityDate;
     }
 
+    public boolean isOpen() {
+        return open;
+    }
 
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
     public int getNumberOfPlayers() {
         return numberOfPlayers;
     }
@@ -84,9 +91,6 @@ public class Activity {
     public void setChargesPerPerson(int chargesPerPerson) {
         this.chargesPerPerson = chargesPerPerson;
     }
-
-
-
 
     public int getJoinedPlayers() {
         return joinedPlayers;
@@ -120,10 +124,9 @@ public class Activity {
         this.activityTime = activityTime;
     }
 
-    public Activity() {
-    }
 
-    public Activity(String sportName, Date activityDate, String activityTime, int numberOfPlayers, int chargesPerPerson, int joinedPlayers, int creatorUserId, Venue venue_id) {
+
+    public Activity(String sportName, Date activityDate, String activityTime, int numberOfPlayers, int chargesPerPerson, int joinedPlayers, int creatorUserId, Venue venue_id, boolean isOpen) {
         this.sportName = sportName;
         this.activityDate = activityDate;
         this.activityTime = activityTime;
@@ -131,6 +134,7 @@ public class Activity {
         this.chargesPerPerson = chargesPerPerson;
         this.joinedPlayers = joinedPlayers;
         this.creatorUserId = creatorUserId;
-        //this.venue_id = venue_id;
+        this.venue_id = venue_id;
+        this.open = isOpen;
     }
 }

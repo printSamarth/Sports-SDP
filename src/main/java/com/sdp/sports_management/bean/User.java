@@ -33,7 +33,7 @@ public class User {
     private String emailId;
 
     @Column(length = 10)
-    private Integer contactNumber;
+    private Long contactNumber;
 
     @Column(length = 50, nullable = false)
     private String password;
@@ -68,11 +68,11 @@ public class User {
     }
 
 
-    public Integer getContactNumber() {
+    public Long getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(Integer contactNumber) {
+    public void setContactNumber(Long contactNumber) {
         this.contactNumber = contactNumber;
     }
 
@@ -100,7 +100,7 @@ public class User {
         this.teamId = teamId;
     }
 
-    public User(String firstName, String lastName, String emailId, Integer contactNumber, String password, Boolean isAdminFlag) {
+    public User(String firstName, String lastName, String emailId, Long contactNumber, String password, Boolean isAdminFlag) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;

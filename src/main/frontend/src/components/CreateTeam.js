@@ -46,7 +46,12 @@ class CreateTeam extends Component {
     cancel(){
         this.props.history.push('/');
     }
-
+    componentDidMount() {
+        if(!sessionStorage.getItem("user_id"))
+        {
+            this.props.history.push('/');
+        }
+    }
     handleSubmit = (e) => {
         e.preventDefault();
         let team = {teamName: this.state.teamName, teamMemembers: this.state.teamMemembers, 
