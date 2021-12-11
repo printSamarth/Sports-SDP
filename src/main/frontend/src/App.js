@@ -11,6 +11,9 @@ import CreateTournament from './components/CreateTournament';
 import TournamentList from './components/TournamentList';
 import CreateTeam from './components/CreateTeam';
 import TeamList from './components/TeamList';
+import ActivityDetails from "./components/ActivityDetails"
+import ActivityList from "./components/ActivityList"
+import AddActivity from "./components/AddActivity"
 import Venueshow from './components/Venueshow';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -55,6 +58,9 @@ class App extends React.Component {
                 <Route path="/TournamentList" component={TournamentList}></Route>
                 <Route path="/CreateTeam" component={CreateTeam}></Route>
                 <Route path="/TeamList" component={TeamList}></Route>
+                <Route path="/AddActivity" component={AddActivity}></Route>
+                <Route path="/ActivityList" component={ActivityList}></Route>
+                <Route path="/ActivityDetails" component={ActivityDetails}></Route>
               </Switch>
             </div>
             <FooterComponent/>
