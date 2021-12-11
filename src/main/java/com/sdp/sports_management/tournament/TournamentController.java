@@ -23,7 +23,7 @@ public class TournamentController {
     }
 
     @PutMapping("/tournament/save/")
-    public TournamentDto saveTournament(TournamentDto request) {
+    public TournamentDto saveTournament(@RequestBody TournamentDto request) {
         System.out.println("Got request " + request);
         return tournamentService.saveTournament(request);
     }
