@@ -38,14 +38,20 @@ class AddActivity extends Component {
         })
     }
     componentDidMount(){
-
-        VenueService.getVenue().then( res => {
-            this.setState({venueData : res.data});
-            console.log(this.state.venueData[0].venue_id+"-"+this.state.venueData[0].venueName)
-        })
-
         let data = sessionStorage.getItem('user_id');
         console.log("userid",data)
+        if(data) {
+            VenueService.getVenue().then(res => {
+                this.setState({venueData: res.data});
+                console.log(this.state.venueData[0].venue_id + "-" + this.state.venueData[0].venueName)
+            })
+        }
+        else
+        {
+            this.props.history.push('/');
+        }
+
+
     }
     cancel(){
         this.props.history.push('/');
