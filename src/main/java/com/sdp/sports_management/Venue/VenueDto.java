@@ -1,5 +1,7 @@
 package com.sdp.sports_management.Venue;
 
+import java.util.Objects;
+
 public class VenueDto {
     private Integer venueId;
     private String venueName;
@@ -54,5 +56,18 @@ public class VenueDto {
 
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VenueDto venueDto = (VenueDto) o;
+        return Objects.equals(venueId, venueDto.venueId) && Objects.equals(venueName, venueDto.venueName) && Objects.equals(venueAddress, venueDto.venueAddress) && Objects.equals(costPerHour, venueDto.costPerHour) && Objects.equals(games, venueDto.games) && Objects.equals(imageLink, venueDto.imageLink);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(venueId, venueName, venueAddress, costPerHour, games, imageLink);
     }
 }
