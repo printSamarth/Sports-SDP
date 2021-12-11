@@ -69,7 +69,7 @@ class ActivityList extends Component {
                         activityTime={activity.activityTime}
                         numberOfPlayers={activity.numberOfPlayers}
                         chargesPerPerson={activity.chargesPerPerson}
-                        venue_id={activity.venue_id.venue_id}
+                        venue_id={activity.venue_id.venueName}
                         // userId={this.state.userId}
                     />
                 )
