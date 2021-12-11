@@ -5,7 +5,7 @@ public class UserDto {
     private String lastName;
     private Integer userId;
     private String emailId;
-    private Integer contactNumber;
+    private Long contactNumber;
     private String password;
 
     public String getEmailId() {
@@ -16,11 +16,11 @@ public class UserDto {
         this.emailId = emailId;
     }
 
-    public Integer getContactNumber() {
+    public Long getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(Integer contactNumber) {
+    public void setContactNumber(Long contactNumber) {
         this.contactNumber = contactNumber;
     }
 
