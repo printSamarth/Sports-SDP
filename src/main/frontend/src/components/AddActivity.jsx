@@ -29,7 +29,7 @@ class AddActivity extends Component {
         // this.changeChargesPerPerson=this.changeChargesPerPerson.bind(this);
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.changeIsOpenFlagHandler = this.changeIsOpenFlagHandler.bind(this);
     }
     handleChange(event) {
         const {name, value} = event.target;
@@ -50,12 +50,16 @@ class AddActivity extends Component {
     cancel(){
         this.props.history.push('/');
     }
-    changeIsOpenFlagHandler= (event) => {
-
-        // this.setState({isAdminFlag: parseInt(event.target.value, 10)});
-        this.setState({isOpenFlag: event.target.value});
-        console.log(event.target.value);
-        console.log(this.state.isOpenFlag);
+    changeIsOpenFlagHandler= async (event) => {
+        console.log("Before",this.state.isOpenFlag);
+        await this.setState({isOpenFlag: event.currentTarget.value},  () => {
+            // this.props.callback(this.state.isOpenFlag)
+             console.log("Callback",this.state.isOpenFlag)
+        })
+        // console.log("Before",this.state.isOpenFlag);
+        // this.setState({isOpenFlag: "open" });
+        // console.log("Target::",event.currentTarget.value);
+        console.log("After",this.state.isOpenFlag);
     }
     handleSubmit = (e) => {
         e.preventDefault();
@@ -70,45 +74,14 @@ class AddActivity extends Component {
                         creatorUserId:sessionStorage.getItem("user_id")} ;
         console.log('activity => ' + JSON.stringify(activity));
 
-        // step 5is_admin_flag
-        // if(this.state.id === '_add'){
+
         ActivityService.createActivity(activity).then((res) =>{
             console.log("activity id",res)
             alert("Activity Created!")
             this.props.history.push({pathname:'/ActivityList'});
         });
-        // }else{
-        //     UserService.updateUser(user, this.state.id).then( res => {
-        //         this.props.history.push('/users');
-        //     });
+
     }
-
-
-    //     changeSportNameHandler= (event) => {
-    //     this.setState({sportName: event.target.value});
-    // }
-
-    // changeDateHandler= (event) => {
-    //     this.setState({date: event.target.value});
-    // }
-
-    // changeTimeHandler= (event) => {
-    //     this.setState({time: event.target.value});
-
-    // }
-    // changeNoOfPlayersHandler= (event) => {
-    //     this.setState({noOfPlayers: event.target.value});
-    // }
-
-    // changeChargesPerPerson= (event) => {
-    //     this.setState({chargerPerPerson: event.target.value});
-    // }
-
-
-    // changeDateHandler = (event) => {
-    //     this.setState({activityDate: event});
-    //     console.log("date",event);
-    // }
 
 
     getTitle(){
@@ -215,8 +188,9 @@ class AddActivity extends Component {
                                     <div className = "form-group">
                                         <label> Is Open ? </label>
                                         <select  className="form-control"
-                                                 autoFocus={true}
-                                                 value={this.state.isOpenFlag} onChange={this.changeIsAdminFlagHandler}>
+                                                 // autoFocus={true}
+                                                 name="isOpenFlag"
+                                                 value={this.state.isOpenFlag} onChange={this.changeIsOpenFlagHandler}>
 
                                             <option value="false" >Not Open</option>
                                             <option value="true"> Open</option>
