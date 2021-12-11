@@ -34,7 +34,7 @@ public class Tournament {
     @Column
     private Date bookingDate;
 
-    @OneToMany(mappedBy = "teamId",
+    @OneToMany(mappedBy = "tournamentId",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private List<Team> teams;
