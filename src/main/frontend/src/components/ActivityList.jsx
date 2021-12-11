@@ -20,34 +20,40 @@ class ActivityList extends Component {
     }
 
     async componentDidMount() {
-
-        let response = await fetch('http://localhost:8081/api/activity/', {
-            method: 'GET',
-            headers: {
-                'Accept': '*/*'
+        if(sessionStorage.getItem("user_id"))
+        {
+            let response = await fetch('http://localhost:8081/api/activity/', {
+                method: 'GET',
+                headers: {
+                    'Accept': '*/*'
+                }
+            })
+            let status = response.status;
+            if (status === 200) {
+                console.log("successful")
             }
-        })
-        let status = response.status;
-        if (status === 200) {
-            console.log("successful")
+
+            let tempActivityInfo = await response.json()
+
+            // if (this.state.userId === undefined) {
+            //     this.setState({
+            //         userId: JSON.parse(localStorage.getItem('userId')),
+            //     })
+            // } else {
+            //     console.log("hi")
+            //     localStorage.setItem('userId', JSON.stringify(this.state.userId));
+            // }
+
+            this.setState({
+                    activityInfo: tempActivityInfo,
+                    isLoading: false
+                }
+            )
         }
-
-        let tempActivityInfo = await response.json()
-
-        // if (this.state.userId === undefined) {
-        //     this.setState({
-        //         userId: JSON.parse(localStorage.getItem('userId')),
-        //     })
-        // } else {
-        //     console.log("hi")
-        //     localStorage.setItem('userId', JSON.stringify(this.state.userId));
-        // }
-
-        this.setState({
-                activityInfo: tempActivityInfo,
-                isLoading: false
-            }
-        )
+        else
+        {
+            this.props.history.push('/');
+        }
     }
 
     render() {

@@ -29,20 +29,29 @@ class ActivityDetails extends Component {
     }
 
     componentDidMount(){
-        console.log("userId",sessionStorage.getItem("user_id"))
-        console.log("activity id in details",this.state.activity_id)
-        ActivityService.getActivityById(this.state.activity_id).then( res => {
-            console.log(res.data)
-            this.setState({sportName: res.data.sportName});
-            this.setState({activityDate: res.data.activityDate});
-            this.setState({activityTime: res.data.activityTime});
-            this.setState({activityTime: res.data.activityTime});
-            this.setState({numberOfPlayers: res.data.numberOfPlayers});
-            this.setState({chargesPerPerson: res.data.chargesPerPerson});
-            this.setState({joinedPlayers: res.data.joinedPlayers});
-            this.setState({venue_id: res.data.venue_id.venue_id});
+        if(sessionStorage.getItem("user_id"))
+        {
+            console.log("userId",sessionStorage.getItem("user_id"))
+            console.log("activity id in details",this.state.activity_id)
 
-        })
+            ActivityService.getActivityById(this.state.activity_id).then( res => {
+                console.log(res.data)
+                this.setState({sportName: res.data.sportName});
+                this.setState({activityDate: res.data.activityDate});
+                this.setState({activityTime: res.data.activityTime});
+                this.setState({activityTime: res.data.activityTime});
+                this.setState({numberOfPlayers: res.data.numberOfPlayers});
+                this.setState({chargesPerPerson: res.data.chargesPerPerson});
+                this.setState({joinedPlayers: res.data.joinedPlayers});
+                this.setState({venue_id: res.data.venue_id.venueName});
+
+            })
+        }
+        else
+        {
+            this.props.history.push('/');
+        }
+
 
     }
 
