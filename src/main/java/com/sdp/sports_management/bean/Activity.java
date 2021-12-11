@@ -1,8 +1,4 @@
 package com.sdp.sports_management.bean;
-
-
-
-
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
