@@ -20,34 +20,41 @@ class TournamentList extends Component {
     }
 
     async componentDidMount() {
-                                      //update appropriate api url(get all tournament list api)
-        let response = await fetch('http://localhost:8081/api/tournament/', {
-            method: 'GET',
-            headers: {
-                'Accept': '*/*'
+        if(sessionStorage.getItem("user_id"))
+        {
+            let response = await fetch('http://localhost:8081/api/tournament/', {
+                method: 'GET',
+                headers: {
+                    'Accept': '*/*'
+                }
+            })
+            let status = response.status;
+            if (status === 200) {
+                console.log("successful")
             }
-        })
-        let status = response.status;
-        if (status === 200) {
-            console.log("successful")
+
+            let tempTournamentInfo = await response.json()
+
+            // if (this.state.userId === undefined) {
+            //     this.setState({
+            //         userId: JSON.parse(localStorage.getItem('userId')),
+            //     })
+            // } else {
+            //     console.log("hi")
+            //     localStorage.setItem('userId', JSON.stringify(this.state.userId));
+            // }
+
+            this.setState({
+                    tournamentInfo: tempTournamentInfo,
+                    isLoading: false
+                }
+            )
         }
-       
-        let tempTournamentInfo = await response.json()
-
-        // if (this.state.userId === undefined) {
-        //     this.setState({
-        //         userId: JSON.parse(localStorage.getItem('userId')),
-        //     })
-        // } else {
-        //     console.log("hi")
-        //     localStorage.setItem('userId', JSON.stringify(this.state.userId));
-        // }
-
-        this.setState({
-                tournamentInfo: tempTournamentInfo,
-                isLoading: false
-            }
-        )
+                                      //update appropriate api url(get all tournament list api)
+        else
+        {
+            this.props.history.push('/');
+        }
     }
 
     render() {

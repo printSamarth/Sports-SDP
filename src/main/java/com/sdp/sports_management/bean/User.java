@@ -17,11 +17,9 @@ public class User {
     @Column
     private String lastName;
 
-    @OneToMany(mappedBy = "user",
-            orphanRemoval = true,
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<Booking> bookings;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team teamId;
 
     public String getEmailId() {
         return emailId;
@@ -31,17 +29,17 @@ public class User {
         this.emailId = emailId;
     }
 
-    @Column(length=50,nullable = false,unique = true)
+    @Column(length = 50, nullable = false, unique = true)
     private String emailId;
 
-    @Column(length=10)
-    private Integer contactNumber;
+    @Column(length = 10)
+    private Long contactNumber;
 
-    @Column(length=50,nullable = false)
+    @Column(length = 50, nullable = false)
     private String password;
 
 
-    @Column( columnDefinition = "boolean default false")
+    @Column(columnDefinition = "boolean default false")
     private Boolean isAdminFlag; //0-> user   1->Admin
 
 
@@ -70,12 +68,11 @@ public class User {
     }
 
 
-
-    public Integer getContactNumber() {
+    public Long getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(Integer contactNumber) {
+    public void setContactNumber(Long contactNumber) {
         this.contactNumber = contactNumber;
     }
 
@@ -95,7 +92,15 @@ public class User {
         isAdminFlag = adminFlag;
     }
 
-    public User(String firstName, String lastName, String emailId, Integer contactNumber, String password, Boolean isAdminFlag) {
+    public Team getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Team teamId) {
+        this.teamId = teamId;
+    }
+
+    public User(String firstName, String lastName, String emailId, Long contactNumber, String password, Boolean isAdminFlag) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;

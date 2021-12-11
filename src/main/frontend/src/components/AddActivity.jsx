@@ -18,7 +18,9 @@ class AddActivity extends Component {
             numberOfPlayers: "",
             chargesPerPerson: "",
             joinedPlayers:0,
+            isOpenFlag:true,
             venueData:[]
+
         }
         // this.changeSportNameHandler = this.changeSportNameHandler.bind(this);
         // this.changeDateHandler = this.changeDateHandler.bind(this);
@@ -27,7 +29,7 @@ class AddActivity extends Component {
         // this.changeChargesPerPerson=this.changeChargesPerPerson.bind(this);
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.changeIsOpenFlagHandler = this.changeIsOpenFlagHandler.bind(this);
     }
     handleChange(event) {
         const {name, value} = event.target;
@@ -36,65 +38,56 @@ class AddActivity extends Component {
         })
     }
     componentDidMount(){
-
-        VenueService.getVenue().then( res => {
-            this.setState({venueData : res.data});
-            console.log(this.state.venueData[0].venue_id+"-"+this.state.venueData[0].venueName)
-        })
-
         let data = sessionStorage.getItem('user_id');
         console.log("userid",data)
+        if(data) {
+            VenueService.getVenue().then(res => {
+                this.setState({venueData: res.data});
+                console.log(this.state.venueData[0].venue_id + "-" + this.state.venueData[0].venueName)
+            })
+        }
+        else
+        {
+            this.props.history.push('/');
+        }
+
+
     }
     cancel(){
         this.props.history.push('/');
     }
-
+    changeIsOpenFlagHandler= async (event) => {
+        console.log("Before",this.state.isOpenFlag);
+        await this.setState({isOpenFlag: event.currentTarget.value},  () => {
+            // this.props.callback(this.state.isOpenFlag)
+             console.log("Callback",this.state.isOpenFlag)
+        })
+        // console.log("Before",this.state.isOpenFlag);
+        // this.setState({isOpenFlag: "open" });
+        // console.log("Target::",event.currentTarget.value);
+        console.log("After",this.state.isOpenFlag);
+    }
     handleSubmit = (e) => {
         e.preventDefault();
-        let activity = {sportName: this.state.sportName, activityDate: this.state.activityDate, activityTime : this.state.activityTime,
-            numberOfPlayers:this.state.numberOfPlayers, chargesPerPerson :this.state.chargesPerPerson, venue_id:{venue_id:this.state.venue_id} ,
-            joinedPlayers:this.state.joinedPlayers, creatorUserId:sessionStorage.getItem("user_id")} ;
+        let activity = {sportName: this.state.sportName,
+                        activityDate: this.state.activityDate,
+                        activityTime : this.state.activityTime,
+                        numberOfPlayers:this.state.numberOfPlayers,
+                        chargesPerPerson :this.state.chargesPerPerson,
+                        venue_id:{venue_id:this.state.venue_id} ,
+                        joinedPlayers:this.state.joinedPlayers,
+                        open: this.state.isOpenFlag,
+                        creatorUserId:sessionStorage.getItem("user_id")} ;
         console.log('activity => ' + JSON.stringify(activity));
 
-        // step 5is_admin_flag
-        // if(this.state.id === '_add'){
+
         ActivityService.createActivity(activity).then((res) =>{
             console.log("activity id",res)
             alert("Activity Created!")
             this.props.history.push({pathname:'/ActivityList'});
         });
-        // }else{
-        //     UserService.updateUser(user, this.state.id).then( res => {
-        //         this.props.history.push('/users');
-        //     });
+
     }
-
-
-    //     changeSportNameHandler= (event) => {
-    //     this.setState({sportName: event.target.value});
-    // }
-
-    // changeDateHandler= (event) => {
-    //     this.setState({date: event.target.value});
-    // }
-
-    // changeTimeHandler= (event) => {
-    //     this.setState({time: event.target.value});
-
-    // }
-    // changeNoOfPlayersHandler= (event) => {
-    //     this.setState({noOfPlayers: event.target.value});
-    // }
-
-    // changeChargesPerPerson= (event) => {
-    //     this.setState({chargerPerPerson: event.target.value});
-    // }
-
-
-    // changeDateHandler = (event) => {
-    //     this.setState({activityDate: event});
-    //     console.log("date",event);
-    // }
 
 
     getTitle(){
@@ -198,6 +191,18 @@ class AddActivity extends Component {
                                             style={{borderRadius:"25px"}}/>
                                     </div>
 
+                                    <div className = "form-group">
+                                        <label> Is Open ? </label>
+                                        <select  className="form-control"
+                                                 // autoFocus={true}
+                                                 name="isOpenFlag"
+                                                 value={this.state.isOpenFlag} onChange={this.changeIsOpenFlagHandler}>
+
+                                            <option value="false" >Not Open</option>
+                                            <option value="true"> Open</option>
+
+                                        </select>
+                                    </div>
 
                                     <button className="btn btn-success" type="submit" onClick={this.handleSubmit}>Create Activity</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>

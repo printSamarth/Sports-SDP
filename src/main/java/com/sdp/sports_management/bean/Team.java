@@ -14,13 +14,14 @@ public class Team {
     @Column
     private String gameName;
 
-    @OneToMany(mappedBy = "userId",
+    @OneToMany(mappedBy = "teamId",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private List<User> members;
 
 
     @ManyToOne
+    @JoinColumn(name = "tournament_id")
     private Tournament tournamentId;
 
     public int getTeamId() {

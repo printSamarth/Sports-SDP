@@ -33,7 +33,14 @@ class CreateTournament extends Component {
             [name]: value
         })
     }
-    /* 
+    componentDidMount() {
+        if(!sessionStorage.getItem("user_id"))
+        {
+                this.props.history.push('/');
+        }
+    }
+
+    /*
         ------------------------------------------
         Commentd Venue population code as of now.
         ------------------------------------------

@@ -2,6 +2,7 @@ package com.sdp.sports_management.bean;
 
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -19,10 +20,64 @@ public class Tournament {
     @Column
     private int max_team;
 
-    @OneToMany(mappedBy = "teamId",
+    @ManyToOne
+    @JoinColumn(name = "created_user_id")
+    private User createdUserId;
+
+    @ManyToOne
+    @JoinColumn(name = "venue_id")
+    private Venue venue;
+
+    @Column
+    private String activityTime;
+
+    @Column
+    private Date bookingDate;
+
+    @OneToMany(mappedBy = "tournamentId",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private List<Team> teams;
+
+    public String getActivityTime() {
+        return activityTime;
+    }
+
+    public void setActivityTime(String activityTime) {
+        this.activityTime = activityTime;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
+    }
+
+    public Date getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+
+    public int getTournamentId() {
+        return tournamentId;
+    }
+
+    public void setTournamentId(int tournamentId) {
+        this.tournamentId = tournamentId;
+    }
+
+    public User getCreatedUserId() {
+        return createdUserId;
+    }
+
+    public void setCreatedUserId(User createdUserId) {
+        this.createdUserId = createdUserId;
+    }
 
     public int getTournament_id() {
         return tournamentId;

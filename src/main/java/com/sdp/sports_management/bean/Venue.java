@@ -1,20 +1,13 @@
 package com.sdp.sports_management.bean;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table
 public class Venue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int venue_id;
+    private int venueId;
     @Column
     private String venueName;
     @Column
@@ -26,21 +19,8 @@ public class Venue {
     @Column
     private String img_link;
 
-
-    @OneToMany(mappedBy = "venue",
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL)
-    private List<Booking> bookings;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "venue_slots",
-            joinColumns = {@JoinColumn(name ="venue_id")},
-            inverseJoinColumns = {@JoinColumn(name = "slot_id")}
-    )
-    private Set<Slots> slots= new HashSet<>();
-
-
-    public Venue(){}
+    public Venue() {
+    }
 
     public Venue(String venueName, String venueAddress, float costPerHour, String games, String img_link) {
         this.venueName = venueName;
@@ -51,19 +31,11 @@ public class Venue {
     }
 
     public int getVenue_id() {
-        return venue_id;
+        return venueId;
     }
 
     public void setVenue_id(int venue_id) {
-        this.venue_id = venue_id;
-    }
-
-    public Set<Slots> getSlots() {
-        return slots;
-    }
-
-    public void setSlots(Set<Slots> slots) {
-        this.slots = slots;
+        this.venueId = venue_id;
     }
 
     public String getVenueName() {
