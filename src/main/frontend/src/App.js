@@ -14,7 +14,8 @@ import TeamList from './components/TeamList';
 import ActivityDetails from "./components/ActivityDetails"
 import ActivityList from "./components/ActivityList"
 import AddActivity from "./components/AddActivity"
-import Venueshow from './components/Venueshow';
+import VenueList from './components/VenueList';
+import Venueshow  from './components/Venueshow';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import First from './components/First';
@@ -61,6 +62,8 @@ class App extends React.Component {
                 <Route path="/AddActivity" component={AddActivity}></Route>
                 <Route path="/ActivityList" component={ActivityList}></Route>
                 <Route path="/ActivityDetails" component={ActivityDetails}></Route>
+                <Route path="/VenueList" component={VenueList}></Route>
+                <Route path="/Venueshow" component={Venueshow}></Route>
               </Switch>
             </div>
             <FooterComponent/>
