@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom'
 class HeaderComponent extends Component {
     constructor(props) {
         super(props)
+        this.logoutHandler = this.logoutHandler.bind(this);
+    }
+
+    logoutHandler= (event) => {
+        sessionStorage.removeItem("user_id");
     }
     render() {
         const loggedIn = this.props.isloggedIn;
@@ -64,14 +69,15 @@ class HeaderComponent extends Component {
 
                                     <li className="nav-item">
                                         <Link to="/BookingList">
-                                            <a className="nav-link " href="" tabindex="-1" aria-disabled="true">Bookings</a>
+                                            <a className="nav-link " href="" tabindex="-1"  aria-disabled="true">Bookings</a>
                                         </Link>
                                     </li>
                                 </ul>
 
 
                                 <li className="nav-item">
-                                    <a className="nav-link " href="" tabindex="-1" aria-disabled="true">Logout</a>
+
+                                    <a className="nav-link " href="" tabindex="-1" onClick={this.logoutHandler} aria-disabled="true">Logout</a>
                                 </li>
 
                             </div>
