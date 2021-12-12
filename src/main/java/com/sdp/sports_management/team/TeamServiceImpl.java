@@ -4,10 +4,12 @@ import com.sdp.sports_management.Exception.ResourceNotFoundException;
 import com.sdp.sports_management.bean.Team;
 import com.sdp.sports_management.bean.User;
 import com.sdp.sports_management.repository.UserRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
+@Service
 public class TeamServiceImpl implements TeamService {
     @Resource
     private TeamRepository teamRepository;

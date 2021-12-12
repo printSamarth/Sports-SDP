@@ -29,7 +29,7 @@ public class TournamentController {
     }
 
     @PutMapping("/tournament/addTeam/")
-    public TournamentDto addTeamToTournament(@RequestBody TournamentDto dto){
+    public TournamentDto addTeamToTournament(@RequestBody TournamentDto dto) {
         return tournamentService.addTeamToTournament(dto);
     }
 }

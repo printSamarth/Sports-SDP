@@ -42,16 +42,16 @@ public class UserTransformer {
         boolean isNew = Objects.isNull(dto.getUserId());
         if (isNew) {
             user = new User();
+            user.setFirstName(dto.getFirstName());
+            user.setLastName(dto.getLastName());
+            user.setContactNumber(dto.getContactNumber());
+            user.setPassword(dto.getPassword());
+            user.setEmailId(dto.getEmailId());
         } else {
             user = userRepository.findByUserId(dto.getUserId());
             if (user == null)
                 throw new ResourceNotFoundException("User with user id: " + dto.getUserId() + " not found");
         }
-        user.setFirstName(dto.getFirstName());
-        user.setLastName(dto.getLastName());
-        user.setContactNumber(dto.getContactNumber());
-        user.setPassword(dto.getPassword());
-        user.setEmailId(dto.getEmailId());
         return user;
     }
 }
