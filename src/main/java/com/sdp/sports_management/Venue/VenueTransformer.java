@@ -20,17 +20,17 @@ public class VenueTransformer {
         if (venueDto == null) return venue;
         boolean isNew = Objects.isNull(venueDto.getVenueId());
         if (isNew) {
-            venue = new Venue();
+            throw new ResourceNotFoundException("venueId: " + venueDto.getVenueId());
         } else {
             venue = venueRepository.findByVenueId(venueDto.getVenueId());
             if (venue == null) throw new ResourceNotFoundException("venueId: " + venueDto.getVenueId());
         }
-        venue.setVenueName(venueDto.getVenueName());
-        venue.setVenueAddress(venueDto.getVenueAddress());
-        venue.setCostPerHour(venueDto.getCostPerHour());
-        venue.setImg_link(venueDto.getImageLink());
-        venue.setGames(venueDto.getGames());
-        if (isNew) venueRepository.save(venue);
+//        venue.setVenueName(venueDto.getVenueName());
+//        venue.setVenueAddress(venueDto.getVenueAddress());
+//        venue.setCostPerHour(venueDto.getCostPerHour());
+//        venue.setImg_link(venueDto.getImageLink());
+//        venue.setGames(venueDto.getGames());
+//        if (isNew) venueRepository.save(venue);
         return venue;
     }
 
