@@ -36,6 +36,7 @@ public class VenueTransformer {
 
     public VenueDto toDto(Venue venue) {
         VenueDto dto = new VenueDto();
+        if(venue == null) return dto;
         dto.setVenueId(venue.getVenue_id());
         dto.setImageLink(venue.getImg_link());
         dto.setVenueAddress(venue.getVenueAddress());
