@@ -39,6 +39,7 @@ public class VenueServiceImpl implements VenueService {
     @Transactional(readOnly = true)
     public Set<VenueDto> getAvailableVenuesGivenDate(TournamentDto request) {
         Set<Venue> venues = venueRepository.findVenueByBookingDateNotEquals(request.getActivityDate());
+        System.out.println("Venues " + venues);
         return venueTransformer.toDtos(venues);
     }
 }
