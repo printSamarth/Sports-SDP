@@ -3,6 +3,7 @@ package com.sdp.sports_management.tournament;
 import com.sdp.sports_management.Exception.ResourceNotFoundException;
 import com.sdp.sports_management.bean.Team;
 import com.sdp.sports_management.bean.Tournament;
+import com.sdp.sports_management.team.TeamRepository;
 import com.sdp.sports_management.team.TeamTransformer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,9 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Resource
     private TournamentRepository tournamentRepository;
+
+    @Resource
+    private TeamRepository teamRepository;
 
     @Resource
     private TournamentTransformer tournamentTransformer;
@@ -52,6 +56,7 @@ public class TournamentServiceImpl implements TournamentService {
         Team team = teamTransformer.toEntity(dto.getTeams().get(0));
         tournament.getTeams().add(team);
         team.setTournamentId(tournament);
+        teamRepository.save(team);
         tournament = tournamentRepository.save(tournament);
         return tournamentTransformer.toDto(tournament);
     }
