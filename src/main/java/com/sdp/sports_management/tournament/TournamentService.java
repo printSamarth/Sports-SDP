@@ -10,4 +10,6 @@ public interface TournamentService {
     TournamentDto getTournamentById(Integer tournamentId);
 
     TournamentDto saveTournament(TournamentDto request);
+
+    TournamentDto addTeamToTournament(TournamentDto dto);
 }

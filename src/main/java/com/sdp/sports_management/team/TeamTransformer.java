@@ -43,7 +43,7 @@ public class TeamTransformer {
         return teamList;
     }
 
-    private Team toEntity(TeamDto dto) {
+    public Team toEntity(TeamDto dto) {
         boolean isNew = Objects.isNull(dto.getTeamId());
         Team team;
         if (isNew) {
