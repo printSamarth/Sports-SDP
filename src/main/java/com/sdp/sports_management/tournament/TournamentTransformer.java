@@ -2,9 +2,11 @@ package com.sdp.sports_management.tournament;
 
 import com.sdp.sports_management.Exception.ResourceNotFoundException;
 import com.sdp.sports_management.Venue.VenueTransformer;
+import com.sdp.sports_management.bean.Booking;
 import com.sdp.sports_management.bean.Team;
 import com.sdp.sports_management.bean.Tournament;
 import com.sdp.sports_management.bean.User;
+import com.sdp.sports_management.booking.BookingRepository;
 import com.sdp.sports_management.repository.UserRepository;
 import com.sdp.sports_management.team.TeamTransformer;
 import org.springframework.stereotype.Component;
@@ -28,6 +30,9 @@ public class TournamentTransformer {
     @Resource
     private TournamentRepository tournamentRepository;
 
+    @Resource
+    private BookingRepository bookingRepository;
+
     public List<TournamentDto> toDtos(List<Tournament> tournaments) {
         return tournaments.stream().map(this::toDto).collect(Collectors.toList());
     }
@@ -49,10 +54,12 @@ public class TournamentTransformer {
 
     public Tournament toEntity(TournamentDto dto) {
         Tournament tournament = null;
+        Booking booking = null;
         if (Objects.nonNull(dto)) {
             boolean isNew = Objects.isNull(dto.getTournamentId());
             if (isNew) {
                 tournament = new Tournament();
+
             } else {
                 tournament = tournamentRepository.findByTournamentId(dto.getTournamentId());
                 if (tournament == null) {
@@ -74,6 +81,11 @@ public class TournamentTransformer {
             tournament.setVenue(venueTransformer.toEntity(dto.getVenue()));
             tournament.setBookingDate(dto.getActivityDate());
             tournament.setActivityTime(dto.getActivityTime());
+            if (isNew){
+                //If new tournament then do booking.
+                booking = new Booking(createdUserId, tournament.getVenue(), tournament.getBookingDate(), tournament);
+                bookingRepository.save(booking);
+            }
         }
         return tournament;
     }
