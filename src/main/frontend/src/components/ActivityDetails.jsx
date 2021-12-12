@@ -72,6 +72,7 @@ class ActivityDetails extends Component {
             {
                 alert("User with ID:"+sessionStorage.getItem("user_id")+" has joined the activity!"
                     +"\n" +"currently joined players:"+res.data.joinedPlayers+ "\n"+"Slots left:"+ (res.data.numberOfPlayers-res.data.joinedPlayers)  )
+
             }
             else{
                 alert("Number of Player limit is reached!");
