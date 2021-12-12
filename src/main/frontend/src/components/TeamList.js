@@ -84,7 +84,7 @@ class TeamList extends Component {
                     sportName={team.gameName}
                     
                     teamName={team.teamName}
-                    members={team.members[0].firstName}
+                    members={team.members}
 
                     // userId={this.state.userId}
                 />

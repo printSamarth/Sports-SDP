@@ -13,6 +13,10 @@ class VenueList extends Component {
     }
 
     componentDidMount(){
+        if(!sessionStorage.getItem("user_id"))
+        {
+            this.props.history.push('/');
+        }
         VenueService.getAllVenue().then((res) => {
             this.setState({ vList: res.data});
         });

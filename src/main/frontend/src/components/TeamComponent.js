@@ -16,6 +16,13 @@ class TeamComponent extends Component {
         console.log(this.state)
     }
 
+    componentDidMount() {
+        if(!sessionStorage.getItem("user_id"))
+        {
+            this.props.history.push('/');
+        }
+    }
+
     async handleJoin() {
         console.log("sssssssssssssssss", this)
         await TeamService.joinTeam(this.state.teamId, sessionStorage.getItem("user_id")).then((res) => {
@@ -26,6 +33,7 @@ class TeamComponent extends Component {
 
 
     render() {
+        // {const listItems = data.map((this.state.members) => <li key={this.state.members}>{d.name}</li>);}
         return (
             <div className="card col-md-6 offset-md-3" style={{borderRadius: "25px", padding: "20px"}}>
                 <div className="card-body">
@@ -37,8 +45,12 @@ class TeamComponent extends Component {
                         <p>Sport Name:{this.state.sportName}</p>
 
                         <p>Team Name:{this.state.teamName} </p>
-                        <p>Memebers:{this.state.members} </p>
 
+                        <p>Memebers: </p>
+                        {this.state.members.map(function(m, userId){
+                            return (<li key={m.userId}>{m.firstName} {m.lastName}</li>)
+                            // console.log(m.firstName);
+                        })}
                         <Link to={{pathname: '/TeamList', teamId: this.state.teamId}}>
                             <button className="btn btn-primary" onClick={this.handleJoin}>Join Team</button>
                         </Link>
