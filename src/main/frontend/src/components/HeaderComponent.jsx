@@ -16,11 +16,12 @@ class HeaderComponent extends Component {
         console.log(sessionStorage.getItem('user_id'));
     }
     render() {
-        const loggedIn = this.props.isloggedIn;
+        const loggedIn = sessionStorage.getItem('user_id');
         const adminFlag = this.props.adminFlag;
+        console.log("Headder component",loggedIn);
         console.log(this.props.isloggedIn)
         console.log(this.props.adminFlag)
-        if(this.props.isloggedIn && !this.props.adminFlag){
+        if(loggedIn && !this.props.adminFlag){
             return (
                 <div>
                     <header>
@@ -92,7 +93,7 @@ class HeaderComponent extends Component {
                 </div>
             )}
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        else if(this.props.isloggedIn && this.props.adminFlag){
+        else if(loggedIn && this.props.adminFlag){
             return(
                 <div>
                     <header>

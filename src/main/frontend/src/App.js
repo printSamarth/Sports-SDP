@@ -68,7 +68,7 @@ class App extends React.Component {
                 <Route path="/TeamComponent" component={TeamComponent}></Route>
               </Switch>
             </div>
-            <FooterComponent/>
+            {/*<FooterComponent/>*/}
           </Router>
         </div>
 

@@ -14,7 +14,7 @@ export class BsCarousel extends Component {
                     <Carousel.Item interval={1000}>
                         <img
                             className="d-block w-100"
-                            src={img1} height="350" width="500"
+                            src={img1} height="450" width="500"
                             alt="First slide"
                         />
                         <Carousel.Caption>
@@ -26,7 +26,7 @@ export class BsCarousel extends Component {
                     <Carousel.Item interval={1000}>
                         <img
                             className="d-block w-100"
-                            src={img2} height="350" width="350"
+                            src={img2} height="450" width="350"
                             alt="Second slide"
                         />
                         <Carousel.Caption>
@@ -38,7 +38,7 @@ export class BsCarousel extends Component {
                     <Carousel.Item interval={1000}>
                         <img
                             className="d-block w-100"
-                            src={img3} height="350" width="350"
+                            src={img3} height="450" width="350"
                             alt="Third slide"
                         />
                         <Carousel.Caption>

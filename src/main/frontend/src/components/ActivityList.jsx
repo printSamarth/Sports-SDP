@@ -82,14 +82,16 @@ class ActivityList extends Component {
             }
         })
         return (
-            <div className="ActivityList">
+            <div>
+            <h1 style={{ textAlign : "center", marginTop:"15px", marginBottom:"15px"}}>
+                Activity List
+            </h1>
+            <div className="ActivityList " >
                 {this.state.isLoading ? this.setStateToFalse :
                     <div>
-                        <h1>Activity List</h1>
-
                         {activityComponents}
-
                     </div>}
+            </div>
             </div>
         )
 

@@ -76,8 +76,6 @@ class TournamentList extends Component {
                     noTeam={tournament.teamCount}
                     venueName = {tournament.venue.venueName}
                     venueAddress = {tournament.venue.venueAddress}
-                    
-
                     // userId={this.state.userId}
                 />
             )
@@ -86,7 +84,7 @@ class TournamentList extends Component {
             <div className="TournamentList">
                 {this.state.isLoading ? this.setStateToFalse :
                     <div>
-                        <h1>Tournament List</h1>
+                        <h1 style={{ textAlign : "center", marginTop:"15px", marginBottom:"15px"}}>Tournament List</h1>
                         
                         {tournamentComponents}
                         

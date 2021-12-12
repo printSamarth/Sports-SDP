@@ -20,6 +20,7 @@ class ActivityComponent extends Component {
 
     render() {
         return (
+
             <div className = "card col-md-6 offset-md-3" style={{borderRadius:"25px",padding :"20px"}}>
                 <div className="card-body">
 
@@ -39,7 +40,7 @@ class ActivityComponent extends Component {
                     </div>
 
                 </div>
-            </div>
+                </div>
 
         )
     }

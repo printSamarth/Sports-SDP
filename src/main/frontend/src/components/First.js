@@ -4,7 +4,10 @@ class First extends Component {
     render() {
         return (
             <div>
-                <h1>Welcome to Sportitup.Login to proceed</h1>
+                <h1 style={{ textAlign : "center", marginTop:"15px" }}>
+                    Welcome to Sportitup.
+                    Login to proceed
+                </h1>
             </div>
         );
     }
