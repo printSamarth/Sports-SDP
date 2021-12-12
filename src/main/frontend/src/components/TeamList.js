@@ -23,7 +23,7 @@ class TeamList extends Component {
     async componentDidMount() {
         if(sessionStorage.getItem("user_id"))
         {
-            let response = await fetch('http://localhost:8081/api/getAllTournaments/', {
+            let response = await fetch('http://localhost:8081/api/tournament/'+this.state.tournamentId, {
                 method: 'GET',
                 headers: {
                     'Accept': '*/*'
@@ -35,7 +35,7 @@ class TeamList extends Component {
             }
 
             let tempTeamInfo = await response.json()
-
+            console.log(tempTeamInfo)
             // if (this.state.userId === undefined) {
             //     this.setState({
             //         userId: JSON.parse(localStorage.getItem('userId')),
@@ -46,7 +46,7 @@ class TeamList extends Component {
             // }
 
             this.setState({
-                    teamInfo: tempTeamInfo,
+                    teamInfo: tempTeamInfo.teams,
                     isLoading: false
                 }
             )
@@ -68,24 +68,23 @@ class TeamList extends Component {
             )
         const teamComponents = this.state.teamInfo.map((team) => {
         
-         const teams = team.teams;
-         console.log("TEams ", teams);
+         console.log("TEams ", team);
          //console.log("Teams[0]", teams[0]);
          console.log("Tournament", this.state.tournamentId);
          var teamId = '';
          var sportName = '';
          var teamName = '';
          var members = '';
-         if(teams !== undefined && teams.length !== 0){
-             teamId = teams
-         }
+        //  if(teams !== undefined && teams.length !== 0){
+        //      teamId = teams
+        //  }
             return (
                 <TeamComponent
-                    teamId={teams[0].teamId}
-                    sportName={teams.gameName}
+                    teamId={team.teamId}
+                    sportName={team.gameName}
                     
-                    teamName={teams.teamName}
-                    members={"samarth"}
+                    teamName={team.teamName}
+                    members={team.members[0].firstName}
 
                     // userId={this.state.userId}
                 />
