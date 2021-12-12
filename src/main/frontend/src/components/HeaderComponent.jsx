@@ -7,8 +7,13 @@ class HeaderComponent extends Component {
         this.logoutHandler = this.logoutHandler.bind(this);
     }
 
-    logoutHandler= (event) => {
+     logoutHandler= async (event) => {
         sessionStorage.removeItem("user_id");
+        // this.props.history.push('/');
+        window.localStorage.clear();
+        window.location.href = '/userSignInComponent';
+        // await this.props.history.push('/userSignInComponent');
+        console.log(sessionStorage.getItem('user_id'));
     }
     render() {
         const loggedIn = this.props.isloggedIn;
@@ -76,8 +81,9 @@ class HeaderComponent extends Component {
 
 
                                 <li className="nav-item">
-
-                                    <a className="nav-link " href="" tabindex="-1" onClick={this.logoutHandler} aria-disabled="true">Logout</a>
+                                    <Link to={"/userSignInComponent"}>
+                                        <a className="nav-link " href="" tabindex="-1" onClick={this.logoutHandler} aria-disabled="true">Logout</a>
+                                    </Link>
                                 </li>
 
                             </div>

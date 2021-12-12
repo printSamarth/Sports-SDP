@@ -22,10 +22,10 @@ function Venueshow(props){
                     </Card.Text>
                     <Card.Title>Venue Cost:</Card.Title>
                     <Card.Text>{props.costperhour}</Card.Text>
-                    <Link to={{pathname:"/DoBooking",params:{props}  }} >
-                        {/* <a className="nav-link" href="" tabindex="-1" aria-disabled="true">proceed to book</a> */}
-                        <button className="btn btn-primary" >proceed to book</button>
-                    </Link>
+                    {/*<Link to={{pathname:"/DoBooking",params:{props}  }} >*/}
+                    {/*    /!* <a className="nav-link" href="" tabindex="-1" aria-disabled="true">proceed to book</a> *!/*/}
+                    {/*    <button className="btn btn-primary" >proceed to book</button>*/}
+                    {/*</Link>*/}
                 </Card.Body>
             </Card>
         </div>
