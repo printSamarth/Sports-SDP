@@ -10,12 +10,10 @@ class VenueList extends Component {
         this.state={
             vList : []
         }
-
-
     }
 
     componentDidMount(){
-        VenueService.getVenue().then((res) => {
+        VenueService.getAllVenue().then((res) => {
             this.setState({ vList: res.data});
         });
     }
@@ -26,8 +24,6 @@ class VenueList extends Component {
         console.log(this.state.vList)
 
         const varr = this.state.vList.map(ven => <Venueshow key={ven.venue_id} vId={ven.venue_id} slots={ven.slots} uId={this.props.uId} img_link={ven.img_link} venuename={ven.venueName} venueaddress={ven.venueAddress} costperhour={ven.costPerHour}/>)
-
-
 
         console.log(varr);
         return(

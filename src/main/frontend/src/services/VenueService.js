@@ -10,6 +10,12 @@ class VenueService {
         return axios.put(AVAILABLE_VENUE_API_BASE_URL, date);   //get the data from the API mentioned
     }
 
+    getAllVenue() {
+
+        console.log("Caught in service");
+        return axios.get("http://localhost:8081/api/venue/");   //get the data from the API mentioned
+    }
+
     createVenue(venue) {
         return axios.post(Venue_API_BASE_URL, venue);
     }
