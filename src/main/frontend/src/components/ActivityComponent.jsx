@@ -25,10 +25,10 @@ class ActivityComponent extends Component {
 
                     <div className="ActivityComponent" href="" style={{width: '30rem'}}>
 
-                        <h3>{this.state.sportName}</h3>
-                        <p>Activity Id: {this.state.activity_id}</p>
+                        <h3>{this.state.sportName}</h3><br/>
+                        {/*<p>Activity Id: {this.state.activity_id}</p>*/}
                         <p>Activity Date:{this.state.activityDate}</p>
-                        <p>Activity Time:{this.state.activityTime}</p>
+                        {/*<p>Activity Time:{this.state.activityTime}</p>*/}
 
                         <p>Players Required:{this.state.numberOfPlayers} </p>
                         <p>Charges per person:{this.state.chargesPerPerson} </p>

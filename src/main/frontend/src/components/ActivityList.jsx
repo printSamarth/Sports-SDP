@@ -65,7 +65,7 @@ class ActivityList extends Component {
                 </div>
             )
         const activityComponents = this.state.activityInfo.map((activity) => {
-            if(activity.open)
+            if(activity.open || activity.creatorUserId ==sessionStorage.getItem("user_id"))
             {
                 return (
                     <ActivityComponent

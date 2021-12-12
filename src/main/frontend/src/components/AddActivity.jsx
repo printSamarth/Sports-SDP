@@ -30,6 +30,7 @@ class AddActivity extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
         this.changeIsOpenFlagHandler = this.changeIsOpenFlagHandler.bind(this);
+        this.changeDateHandler = this.changeDateHandler.bind(this);
     }
     handleChange(event) {
         const {name, value} = event.target;
@@ -37,14 +38,29 @@ class AddActivity extends Component {
             [name]: value
         })
     }
+    changeDateHandler= (event) => {
+        this.setState({activityDate: event.target.value});
+        const myDate = { "activityDate": event.target.value };
+        VenueService.getVenue(myDate).then( res => {
+            console.log(res.data);
+            this.setState({venueData : res.data});
+            //console.log(this.state.venueData[0].venue_id+"-"+this.state.venueData[0].venueName)
+        })
+
+        let data = sessionStorage.getItem('user_id');
+        console.log("userid",data)
+
+
+    }
+
     componentDidMount(){
         let data = sessionStorage.getItem('user_id');
         console.log("userid",data)
         if(data) {
-            VenueService.getVenue().then(res => {
-                this.setState({venueData: res.data});
-                console.log(this.state.venueData[0].venue_id + "-" + this.state.venueData[0].venueName)
-            })
+            // VenueService.getVenue(this.state.activityDate).then(res => {
+            //     this.setState({venueData: res.data});
+            //     console.log(this.state.venueData[0].venue_id + "-" + this.state.venueData[0].venueName)
+            // })
         }
         else
         {
@@ -69,6 +85,7 @@ class AddActivity extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log(this.state);
         let activity = {sportName: this.state.sportName,
                         activityDate: this.state.activityDate,
                         activityTime : this.state.activityTime,
@@ -130,7 +147,7 @@ class AddActivity extends Component {
 
                                             className="form-control"
                                             value={this.state.activityDate}
-                                            onChange={this.handleChange} style={{borderRadius:"25px"}}/>
+                                            onChange={this.changeDateHandler} style={{borderRadius:"25px"}}/>
                                     </div>
 
                                     {/* <DatePicker
@@ -141,29 +158,43 @@ class AddActivity extends Component {
                                             // dateFormat="yyyy-mm-dd"
                                             /> */}
 
-                                    <div className = "form-group">
-                                        <label> Time:</label>
-                                        <input
-                                            placeholder="Time"
+                                    {/*<div className = "form-group">*/}
+                                    {/*    <label> Time:</label>*/}
+                                    {/*    <input*/}
+                                    {/*        placeholder="Time"*/}
 
-                                            name="activityTime" type="time"
-                                            className="form-control"
-                                            value={this.state.activityTime}
-                                            onChange={this.handleChange}
-                                            style={{borderRadius:"25px"}}/>
-                                    </div>
+                                    {/*        name="activityTime" type="time"*/}
+                                    {/*        className="form-control"*/}
+                                    {/*        value={this.state.activityTime}*/}
+                                    {/*        onChange={this.handleChange}*/}
+                                    {/*        style={{borderRadius:"25px"}}/>*/}
+                                    {/*</div>*/}
 
+                                    {/*<div>*/}
+                                    {/*    <label> Venue: </label>*/}
+                                    {/*    <select class="form-control"  name="venue_id" value={this.state.venue_id}*/}
+                                    {/*            style={{borderRadius:"25px"}} onChange={this.handleChange}*/}
+                                    {/*    onClick={this.dateChangeHandler}>*/}
+
+                                    {/*        <option value=""> -- Select a Venue -- </option>*/}
+                                    {/*        {this.state.venueData.map((data) => (*/}
+                                    {/*            <option key={data.venue_id} value={data.venue_id}>*/}
+                                    {/*                {data.venueName+"-"+data.venueAddress}*/}
+                                    {/*            </option>*/}
+                                    {/*        ) )}*/}
+                                    {/*    </select>*/}
+                                    {/*</div>*/}
                                     <div>
                                         <label> Venue: </label>
-                                        <select class="form-control"  name="venue_id" value={this.state.venue_id}
-                                                style={{borderRadius:"25px"}} onChange={this.handleChange}>
+                                        <select className="form-control" name="venue_id" value={this.state.venue_id}
+                                                style={{borderRadius: "25px"}} onChange={this.handleChange}>
 
-                                            <option value=""> -- Select a Venue -- </option>
+                                            <option value=""> -- Select a Venue --</option>
                                             {this.state.venueData.map((data) => (
-                                                <option key={data.venue_id} value={data.venue_id}>
-                                                    {data.venueName+"-"+data.venueAddress}
+                                                <option key={data.venue_id} value={data.venueId}>
+                                                    {data.venueName + "-" + data.venueAddress}
                                                 </option>
-                                            ) )}
+                                            ))}
                                         </select>
                                     </div>
 
