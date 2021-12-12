@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const TEAM_API_BASE_URL = "http://localhost:8081/api/addMember/"
-
+const TEAM_CREATE_API_BASE_URL = "http://localhost:8081/api/tournament/addTeam/"
 class TeamService {
 
     getTeam() {
@@ -10,7 +10,7 @@ class TeamService {
 
     createTeam(team) {
         console.log('in login user service', team);
-        return axios.post(TEAM_API_BASE_URL, team);   //get the data from the API mentioned
+        return axios.put(TEAM_CREATE_API_BASE_URL, team);   //get the data from the API mentioned
 
     }
 

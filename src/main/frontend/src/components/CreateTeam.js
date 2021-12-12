@@ -5,7 +5,9 @@ import { Multiselect } from 'multiselect-react-dropdown';
 
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import UserService from '../services/UserService';
 class CreateTeam extends Component {
+    player = new Array;
     constructor(props) {
         super(props)
 
@@ -13,10 +15,12 @@ class CreateTeam extends Component {
             teamName: "",
             teamMemembers: [],
             creatorUserId: "", //Captain 
-            tournamentId: this.props.tournamentId,
-            sportName: this.props.sportName
+            tournamentId: this.props.location.tournamentId,
+            sportName: this.props.location.sportName,
+            players: []
         }
         
+        console.log("Constructor tid", this.state);
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
         
@@ -27,43 +31,54 @@ class CreateTeam extends Component {
             [name]: value
         })
     }
-    /* 
-        ------------------------------------------
-        Commentd Venue population code as of now.
-        ------------------------------------------
-
-    */
-
-    // componentDidMount(){
-    //    VenueService.getVenue().then( res => {
-    //         this.setState({venueData : res.data});
-    //         //console.log(this.state.venueData[0].venue_id+"-"+this.state.venueData[0].venueName)
-    //     })
-
-    //     let data = sessionStorage.getItem('user_id');
-    //     console.log("userid",data)
-    // }
+   
     cancel(){
         this.props.history.push('/');
     }
-    componentDidMount() {
+    
+    async componentDidMount() {
+        const playersTemp = [];
         if(!sessionStorage.getItem("user_id"))
         {
             this.props.history.push('/');
         }
+        await UserService.getUser().then((res)=> {
+            console.log("All users ", res.data); 
+            res.data.forEach(function (item, index) {
+                let email = item.split(",")[1];
+                let id = item.split(",")[0];
+                playersTemp.push({id, email})
+              });   
+        //console.log("Players", playersTemp);
+        });
+
+        await this.setState({
+            players: playersTemp
+        })
+        //console.log("players", this.state.players);
     }
+
+    
     handleSubmit = (e) => {
         e.preventDefault();
-        let team = {teamName: this.state.teamName, teamMemembers: this.state.teamMemembers, 
-            tournamentId: this.state.tournamentId, sportName: this.state.sportName, creatorUserId:sessionStorage.getItem("user_id")} ;  
+        let team = {
+                    tournamentId: this.state.tournamentId, 
+                    teams: [
+                                {
+                                    teamName: this.state.teamName,
+                                    gameName: this.state.sportName, 
+                                    members: this.state.teamMemembers, 
+                                }
+                            ]
+                    };  
         console.log('activity => ' + JSON.stringify(team));
-
+        
         // step 5is_admin_flag
         // if(this.state.id === '_add'){
             TeamService.createTeam(team).then((res) =>{
                 console.log("team id", res)
                 alert("Team Created!")
-                this.props.history.push({pathname:'/TeamList'});
+                this.props.history.push({pathname:'/TournamentList'});
             });
         // }else{
         //     UserService.updateUser(user, this.state.id).then( res => {
@@ -71,25 +86,26 @@ class CreateTeam extends Component {
         //     });
             }
     
-    players = [
-        { label: "s@gmail.com", value: "10" },
-        { label: "a@gmail.com", value: "20" },
-        { label: "b@gmail.com", value: "30" },
-        
-        ];
-    changeSlotHandlerAdd= (event) => {
+    
+    changeSlotHandlerAdd= async (event) => {
         // this.setState({slots: event.target.value});
         let value
-        event.map(data=>(
+        
+        await event.map(data=>(
             // this.state.slots=[],
             // this.state.slots.push(data.value)
-            this.setState({teamMemembers: [ ...this.state.teamMemembers,  {"userId":  parseInt(data.value)}  ]})
+            //console.log(data.id)
+            this.setState({teamMemembers: [ ...this.state.teamMemembers,  {"userId":  parseInt(data.id)}  ]})
             ))
-        console.log(this.state.slots)
+        //console.log(this.state.teamMemembers)
     }
-    changeSlotHandlerRemove= (event) => {
+    changeSlotHandlerRemove= async (event) => {
         // this.setState({slots: event.target.value});
-        console.log(event);
+        
+        //await event.map(data=>(console.log(data)))
+        //const index = this.state.teamMemembers.indexOf(event.target.value.email);
+        
+        
     }
 
     getTitle(){
@@ -126,8 +142,8 @@ class CreateTeam extends Component {
                                             <label> Players available</label>
                                             <Multiselect  className="form-control" 
                                             autoFocus={true}
-                                            options = {this.players}
-                                            displayValue="label"
+                                            options = {this.state.players}
+                                            displayValue="email"
                                             value={this.state.isAdminFlag} 
                                             onSelect={this.changeSlotHandlerAdd}
                                             onRemove={this.changeSlotHandlerRemove}> 
@@ -135,7 +151,7 @@ class CreateTeam extends Component {
                                             </Multiselect>
                                         </div>
 
-                                        <button className="btn btn-success" type="submit" onClick={this.handleSubmit}>Create Tournament</button>
+                                        <button className="btn btn-success" type="submit" onClick={this.handleSubmit}>Create Team</button>
                                         <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                                     </form>
                                 </div>
