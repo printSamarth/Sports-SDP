@@ -11,7 +11,7 @@ class ActivityDetails extends Component {
 
         this.state = {
             // userId:this.props.location.userId,
-            activity_id: this.props.location.activity_id,
+            activity_id: sessionStorage.getItem('activity_id'),
 
             activityData:{},         //contains everything returned by api
             sportName:"",
@@ -72,7 +72,7 @@ class ActivityDetails extends Component {
             {
                 alert("User with ID:"+sessionStorage.getItem("user_id")+" has joined the activity!"
                     +"\n" +"currently joined players:"+res.data.joinedPlayers+ "\n"+"Slots left:"+ (res.data.numberOfPlayers-res.data.joinedPlayers)  )
-
+                this.props.history.push({pathname:'/ActivityList'});
             }
             else{
                 alert("Number of Player limit is reached!");
