@@ -2,14 +2,13 @@ package com.sdp.sports_management.bean;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Time;
 
 @Entity
 @Table
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int booking_id;
+    private int bookingId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
@@ -23,31 +22,30 @@ public class Booking {
 //    private Venue venue;
 
     @Column
-    private Date booking_date;
+    private Date bookingDate;
 
-    @Column
-    private int tournament_id;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tournament_id")
+    private Tournament tournamentId;
 //    @Column
 //    private Time booking_time;
-
-    @Column
-    private int slot;
     public Booking(){}
 
-    public Booking(User user, Venue venue, Date booking_date, int slot) {
+    public Booking(User user, Venue venue, Date bookingDate, Tournament tournamentId) {
         this.user = user;
         this.venue = venue;
-        this.booking_date = booking_date;
+        this.bookingDate = bookingDate;
+        this.tournamentId = tournamentId;
 //        this.booking_time = booking_time;
-        this.slot = slot;
+
     }
 
-    public int getBooking_id() {
-        return booking_id;
+    public int getBookingId() {
+        return bookingId;
     }
 
-    public void setBooking_id(int booking_id) {
-        this.booking_id = booking_id;
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
     }
 
     public User getUser() {
@@ -66,12 +64,12 @@ public class Booking {
         this.venue = venue;
     }
 
-    public Date getBooking_date() {
-        return booking_date;
+    public Date getBookingDate() {
+        return bookingDate;
     }
 
-    public void setBooking_date(Date booking_date) {
-        this.booking_date = booking_date;
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
 //    public Time getBooking_time() {
@@ -82,19 +80,11 @@ public class Booking {
 //        this.booking_time = booking_time;
 //    }
 
-    public int getSlot() {
-        return slot;
+    public Tournament getTournamentId() {
+        return tournamentId;
     }
 
-    public void setSlot(int slot) {
-        this.slot = slot;
-    }
-
-    public int getTournament_id() {
-        return tournament_id;
-    }
-
-    public void setTournament_id(int tournament_id) {
-        this.tournament_id = tournament_id;
+    public void setTournamentId(Tournament tournamentId) {
+        this.tournamentId = tournamentId;
     }
 }
