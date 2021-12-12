@@ -2,9 +2,13 @@ package com.sdp.sports_management.Activity;
 
 import com.sdp.sports_management.bean.Activity;
 import com.sdp.sports_management.Activity.ActivityController;
+import com.sdp.sports_management.bean.Booking;
+import com.sdp.sports_management.bean.User;
+import com.sdp.sports_management.booking.BookingRepository;
 import com.sdp.sports_management.controller.UserController;
 import com.sdp.sports_management.Exception.ResourceNotFoundException;
 import com.sdp.sports_management.Activity.ActivityRepository;
+import com.sdp.sports_management.repository.UserRepository;
 import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +25,10 @@ import java.util.List;
 public class ActivityService {
 
     private final ActivityRepository activityRepository;
-
+    @Resource
+    private BookingRepository bookingRepository;
+    @Resource
+    private UserRepository userRepository;
     @Autowired
     public ActivityService(ActivityRepository activityRepository) {
         this.activityRepository = activityRepository;
@@ -36,7 +44,9 @@ public class ActivityService {
     {
         System.out.println(activity.toString());
         Activity activity2= activityRepository.save(activity);
-
+        User creatorUser = userRepository.findByUserId(activity.getCreatorUserId());
+        Booking booking = new Booking(creatorUser, activity.getVenue_id(), activity.getActivityDate(),activity);
+        bookingRepository.save(booking);
         logger.info("[New Activity Created with id] - " + activity2.getActivity_id());
         return activity2;
     }
