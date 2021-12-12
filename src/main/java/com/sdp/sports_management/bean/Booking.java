@@ -27,6 +27,11 @@ public class Booking {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tournament_id")
     private Tournament tournamentId;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "activity_id")
+    private Activity activityId;
+
 //    @Column
 //    private Time booking_time;
     public Booking(){}
@@ -36,6 +41,15 @@ public class Booking {
         this.venue = venue;
         this.bookingDate = bookingDate;
         this.tournamentId = tournamentId;
+//        this.booking_time = booking_time;
+
+    }
+
+    public Booking(User user, Venue venue, Date bookingDate, Activity activityId) {
+        this.user = user;
+        this.venue = venue;
+        this.bookingDate = bookingDate;
+        this.activityId = activityId;
 //        this.booking_time = booking_time;
 
     }
@@ -79,6 +93,14 @@ public class Booking {
 //    public void setBooking_time(Time booking_time) {
 //        this.booking_time = booking_time;
 //    }
+
+    public Activity getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Activity activityId) {
+        this.activityId = activityId;
+    }
 
     public Tournament getTournamentId() {
         return tournamentId;
