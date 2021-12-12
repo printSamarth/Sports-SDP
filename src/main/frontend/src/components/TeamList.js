@@ -7,7 +7,8 @@ class TeamList extends Component {
         this.state = {
             isLoading: true,
             teamInfo: [],
-            tournamentId: this.props.location.tournamentId
+            tournamentId: sessionStorage.getItem('tournamentId'),
+            tournamentName: this.props.location.sportName
             // userId:this.props.location.userId
         }
         this.setStateToFalse = this.setStateToFalse.bind(this)
@@ -47,7 +48,8 @@ class TeamList extends Component {
 
             this.setState({
                     teamInfo: tempTeamInfo.teams,
-                    isLoading: false
+                    isLoading: false,
+
                 }
             )
         }
@@ -81,7 +83,7 @@ class TeamList extends Component {
             return (
                 <TeamComponent
                     teamId={team.teamId}
-                    sportName={team.gameName}
+                    // sportName={team.gameName}
                     
                     teamName={team.teamName}
                     members={team.members}
@@ -94,7 +96,9 @@ class TeamList extends Component {
             <div className="TeamList">
                 {this.state.isLoading ? this.setStateToFalse :
                     <div>
-                        <h1>Team List</h1>
+                        <h1 style={{ textAlign : "center", marginTop:"15px", marginBottom:"15px"}}>
+                            Team List for {this.state.tournamentName}
+                        </h1>
                         
                         {teamComponents}
                         

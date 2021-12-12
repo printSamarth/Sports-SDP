@@ -13,7 +13,8 @@ class TournamentComponent extends Component {
             venueName: this.props.venueName,
             venueAddress:this.props.venueAddress
             
-        }   
+        }
+        this.storeTournamentId = this.storeTournamentId.bind(this);
     }
 
     componentDidMount() {
@@ -22,7 +23,11 @@ class TournamentComponent extends Component {
             this.props.history.push('/');
         }
     }
-    
+
+    storeTournamentId(e)
+    {
+        sessionStorage.setItem('tournamentId',this.state.tournamentId);
+    }
     render() {
         return (
             <div className = "card col-md-6 offset-md-3" style={{borderRadius:"25px",padding :"20px"}}>
@@ -40,12 +45,12 @@ class TournamentComponent extends Component {
                 <p>Venue Address: {this.state.venueAddress} </p>
                 
                 
-                <Link to={{pathname:'/TeamList',tournamentId:this.state.tournamentId }}>
-                    <button className="btn btn-primary">Individual Participation</button>
+                <Link to={{pathname:'/TeamList',tournamentId:this.state.tournamentId, sportName: this.state.sportName }}>
+                    <button className="btn btn-primary" onClick={this.storeTournamentId}>Individual Participation</button>
                 </Link>
 
                 <Link to={{pathname:'/CreateTeam',tournamentId:this.state.tournamentId, sportName: this.state.sportName }}>
-                    <button className="btn btn-primary">Team Participation</button>
+                    <button className="btn btn-primary" onClick={this.storeTournamentId}>Team Participation</button>
                 </Link>
             </div>
            

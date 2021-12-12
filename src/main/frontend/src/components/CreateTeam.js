@@ -33,7 +33,7 @@ class CreateTeam extends Component {
     }
    
     cancel(){
-        this.props.history.push('/');
+        this.props.history.push('/TournamentList');
     }
     
     async componentDidMount() {
@@ -112,7 +112,9 @@ class CreateTeam extends Component {
         // if(this.state.id === '_add'){
         //     return <h3 className="text-center">Add User</h3>
         // }else{
-            return <h2 className="text-center" style={{ marginTop:"15px" }}>Create new Team</h2>
+            return <h2 className="text-center" style={{ marginTop:"15px" }}>
+                Create a new team for {this.state.sportName}
+            </h2>
         // }
     }
     render() {

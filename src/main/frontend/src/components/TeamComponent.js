@@ -29,6 +29,7 @@ class TeamComponent extends Component {
             console.log("activity_result", res)
             alert("Successfully joined!");
         });
+        window.location.reload();
     }
 
 
@@ -41,7 +42,7 @@ class TeamComponent extends Component {
                     <div className="TeamComponent" href="" style={{width: '30rem'}}>
 
                         <h3>{this.state.sportName}</h3>
-                        <p>Team Id: {this.state.teamId}</p>
+                        {/*<p>Team Id: {this.state.teamId}</p>*/}
                         <p>Sport Name:{this.state.sportName}</p>
 
                         <p>Team Name:{this.state.teamName} </p>
