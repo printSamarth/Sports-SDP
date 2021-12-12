@@ -27,4 +27,9 @@ public class TournamentController {
         System.out.println("Got request " + request);
         return tournamentService.saveTournament(request);
     }
+
+    @PutMapping("/tournament/addTeam/")
+    public TournamentDto addTeamToTournament(@RequestBody TournamentDto dto){
+        return tournamentService.addTeamToTournament(dto);
+    }
 }
