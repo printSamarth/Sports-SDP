@@ -24,7 +24,6 @@ class TeamComponent extends Component {
         super(props);
         this.state = {
             teamId: this.props.teamId,
-            captainId: this.props.captainId,
             teamName:this.props.teamName,
             sportName: this.props.sportName,
             members: this.props.members
@@ -43,7 +42,6 @@ class TeamComponent extends Component {
                 <h3>{this.state.sportName}</h3>
                 <p>Team Id: {this.state.teamId}</p>
                 <p>Sport Name:{this.state.sportName}</p>
-                <p>Captain Id:{this.state.captainId}</p>
                 
                 <p>Team Name:{this.state.teamName} </p>
                 <p>Memebers:{this.state.members} </p>

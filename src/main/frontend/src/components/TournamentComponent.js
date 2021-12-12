@@ -9,12 +9,16 @@ class TournamentComponent extends Component {
             tournamentId: this.props.tournamentId,
             sportName: this.props.sportName,
             maxTeam: this.props.maxTeam,
-            noTeam: this.props.noTeam
+            noTeam: this.props.noTeam,
+            venueName: this.props.venueName,
+            venueAddress:this.props.venueAddress
             
         }   
     }
 
-
+    setId(){
+        alert(this.state.tournamentId);
+    }
     render() {
         return (
             <div className = "card col-md-6 offset-md-3" style={{borderRadius:"25px",padding :"20px"}}>
@@ -24,13 +28,16 @@ class TournamentComponent extends Component {
                 
                 <h3>{this.state.sportName}</h3>
                 <p>Tournament Id: {this.state.tournamentId}</p>
-                <p>Sport Name:{this.state.sportName}</p>
-                <p>Max Teams:{this.state.maxTeam}</p>
+                <p>Sport Name: {this.state.sportName}</p>
+                <p>Max Teams: {this.state.maxTeam}</p>
                 
-                <p>No. of Teams:{this.state.noTeam} </p>
+                <p>No. of Teams: {this.state.noTeam} </p>
+                <p>Venue Name: {this.state.venueName} </p>
+                <p>Venue Address: {this.state.venueAddress} </p>
+                
                 
                 <Link to={{pathname:'/TeamList',tournamentId:this.state.tournamentId }}>
-                    <button className="btn btn-primary">Individual Participation</button>
+                    <button onClick="setId()" className="btn btn-primary">Individual Participation</button>
                 </Link>
 
                 <Link to={{pathname:'/CreateTeam',tournamentId:this.state.tournamentId, sportName: this.state.sportName }}>

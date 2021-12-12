@@ -1,5 +1,6 @@
 package com.sdp.sports_management.tournament;
 
+import com.sdp.sports_management.Exception.ResourceLimitReachedException;
 import com.sdp.sports_management.Exception.ResourceNotFoundException;
 import com.sdp.sports_management.Venue.VenueTransformer;
 import com.sdp.sports_management.bean.Booking;
@@ -48,7 +49,7 @@ public class TournamentTransformer {
         dto.setCreatedUserId(tournament.getCreatedUserId().getUser_id());
         dto.setActivityDate(tournament.getBookingDate());
         dto.setMaxTeams(tournament.getMax_team());
-        dto.setTeamCount(tournament.getNo_teams());
+        dto.setTeamCount(tournament.getTeams().size());
         return dto;
     }
 
@@ -70,6 +71,9 @@ public class TournamentTransformer {
             tournament.setTeams(teamTransformer.toEntities(dto.getTeams()));
             tournament.setGame_name(dto.getGameName());
             tournament.setMax_team(dto.getMaxTeams());
+            if (tournament.getTeams() != null && tournament.getTeams().size() > tournament.getMax_team()) {
+                throw new ResourceLimitReachedException("Max team limit reached for tournament: " + dto.getTournamentId());
+            }
             tournament.setNo_teams(dto.getTeamCount());
             tournament.setTime_table(dto.getTimeTable());
             for (Team team : tournament.getTeams()) {

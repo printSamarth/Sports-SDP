@@ -7,6 +7,7 @@ class TeamList extends Component {
         this.state = {
             isLoading: true,
             teamInfo: [],
+            tournamentId: this.props.location.tournamentId
             // userId:this.props.location.userId
         }
         this.setStateToFalse = this.setStateToFalse.bind(this)
@@ -22,7 +23,7 @@ class TeamList extends Component {
     async componentDidMount() {
         if(sessionStorage.getItem("user_id"))
         {
-            let response = await fetch('http://localhost:8081/api/teams/', {
+            let response = await fetch('http://localhost:8081/api/getAllTournaments/', {
                 method: 'GET',
                 headers: {
                     'Accept': '*/*'
@@ -66,13 +67,25 @@ class TeamList extends Component {
                 </div>
             )
         const teamComponents = this.state.teamInfo.map((team) => {
+        
+         const teams = team.teams;
+         console.log("TEams ", teams);
+         //console.log("Teams[0]", teams[0]);
+         console.log("Tournament", this.state.tournamentId);
+         var teamId = '';
+         var sportName = '';
+         var teamName = '';
+         var members = '';
+         if(teams !== undefined && teams.length !== 0){
+             teamId = teams
+         }
             return (
                 <TeamComponent
-                    teamId={team.teamId}
-                    sportName={team.sportName}
-                    captainId={team.captainId}
-                    teamName={team.teamName}
-                    members={team.members}
+                    teamId={teams[0].teamId}
+                    sportName={teams.gameName}
+                    
+                    teamName={teams.teamName}
+                    members={"samarth"}
 
                     // userId={this.state.userId}
                 />
