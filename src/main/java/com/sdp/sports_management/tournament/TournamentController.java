@@ -18,8 +18,8 @@ public class TournamentController {
     }
 
     @GetMapping("/tournament/{tournamentId}")
-    public TournamentDto getTournamentById(@PathVariable("tournamentId") Integer tournamentId) {
-        return tournamentService.getTournamentById(tournamentId);
+    public TournamentDto getTournamentById(@PathVariable("tournamentId") String tournamentId) {
+        return tournamentService.getTournamentById(Integer.parseInt(tournamentId));
     }
 
     @PutMapping("/tournament/save/")
