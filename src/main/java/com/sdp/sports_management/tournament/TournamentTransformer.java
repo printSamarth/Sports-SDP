@@ -81,7 +81,7 @@ public class TournamentTransformer {
             tournament.setVenue(venueTransformer.toEntity(dto.getVenue()));
             tournament.setBookingDate(dto.getActivityDate());
             tournament.setActivityTime(dto.getActivityTime());
-            if (isNew){
+            if (isNew) {
                 //If new tournament then do booking.
                 booking = new Booking(createdUserId, tournament.getVenue(), tournament.getBookingDate(), tournament);
                 bookingRepository.save(booking);
