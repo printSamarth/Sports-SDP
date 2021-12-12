@@ -19,6 +19,7 @@ import Venueshow  from './components/Venueshow';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import First from './components/First';
+import TeamComponent from "./components/TeamComponent";
 
 
 class App extends React.Component {
@@ -64,6 +65,7 @@ class App extends React.Component {
                 <Route path="/ActivityDetails" component={ActivityDetails}></Route>
                 <Route path="/VenueList" component={VenueList}></Route>
                 <Route path="/Venueshow" component={Venueshow}></Route>
+                <Route path="/TeamComponent" component={TeamComponent}></Route>
               </Switch>
             </div>
             <FooterComponent/>
