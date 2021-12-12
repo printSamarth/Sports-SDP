@@ -67,6 +67,7 @@ class TournamentList extends Component {
             )
         const tournamentComponents = this.state.tournamentInfo.map((tournament) => {
             console.log("Tournament ", tournament);
+            
             return (
                 <TournamentComponent
                     tournamentId={tournament.tournamentId}
