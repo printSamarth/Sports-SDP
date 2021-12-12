@@ -16,9 +16,7 @@ class TournamentComponent extends Component {
         }   
     }
 
-    setId(){
-        alert(this.state.tournamentId);
-    }
+    
     render() {
         return (
             <div className = "card col-md-6 offset-md-3" style={{borderRadius:"25px",padding :"20px"}}>
@@ -37,7 +35,7 @@ class TournamentComponent extends Component {
                 
                 
                 <Link to={{pathname:'/TeamList',tournamentId:this.state.tournamentId }}>
-                    <button onClick="setId()" className="btn btn-primary">Individual Participation</button>
+                    <button className="btn btn-primary">Individual Participation</button>
                 </Link>
 
                 <Link to={{pathname:'/CreateTeam',tournamentId:this.state.tournamentId, sportName: this.state.sportName }}>

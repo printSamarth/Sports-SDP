@@ -12,8 +12,8 @@ class TeamComponent extends Component {
         
         if(res.data.joinedPlayers!=undefined)
         {
-            alert("User with ID:"+sessionStorage.getItem("user_id")+" has joined the activity!"
-            +"\n" +"currently joined players:"+res.data.joinedPlayers+ "\n"+"Slots left:"+ (res.data.numberOfPlayers-res.data.joinedPlayers)  )
+            alert("User with ID:"+sessionStorage.getItem("user_id")+" has joined the team!"
+            +"\n")
         }
         else{
             alert("Number of Player limit is reached!");
@@ -46,8 +46,8 @@ class TeamComponent extends Component {
                 <p>Team Name:{this.state.teamName} </p>
                 <p>Memebers:{this.state.members} </p>
                 
-                <Link to={{pathname:'/',teamId:this.state.teamId }}>
-                    <button className="btn btn-primary">Join Team</button>
+                <Link to={{pathname:'/TeamList',teamId:this.state.teamId }}>
+                    <button className="btn btn-primary" onClick={this.handleJoin}>Join Team</button>
                 </Link>
 
             </div>
