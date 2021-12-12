@@ -16,6 +16,13 @@ class TeamComponent extends Component {
         console.log(this.state)
     }
 
+    componentDidMount() {
+        if(!sessionStorage.getItem("user_id"))
+        {
+            this.props.history.push('/');
+        }
+    }
+
     async handleJoin() {
         console.log("sssssssssssssssss", this)
         await TeamService.joinTeam(this.state.teamId, sessionStorage.getItem("user_id")).then((res) => {

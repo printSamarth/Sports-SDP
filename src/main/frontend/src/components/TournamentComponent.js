@@ -16,6 +16,12 @@ class TournamentComponent extends Component {
         }   
     }
 
+    componentDidMount() {
+        if(!sessionStorage.getItem("user_id"))
+        {
+            this.props.history.push('/');
+        }
+    }
     
     render() {
         return (
