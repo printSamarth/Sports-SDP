@@ -12,6 +12,6 @@ import java.util.Set;
 public interface VenueRepository extends JpaRepository<Venue, Integer> {
     Venue findByVenueId(Integer venueId);
 
-    @Query("select v from Venue v left outer join Tournament t on t.venue = v where t.bookingDate <> ?1")
-    Set<Venue> findVenueByBookingDateNotEquals(Date bookingDate);
+    @Query("select v from Venue v join Booking b on b.venue = v where b.bookingDate = ?1")
+    Set<Venue> findAllBookedVenuesOnDate(Date bookingDate);
 }
