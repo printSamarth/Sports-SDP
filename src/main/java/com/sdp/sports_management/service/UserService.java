@@ -29,7 +29,9 @@ public class UserService {
         userRepository.findAll().forEach(userList::add);
         return userList;    //convert iterable class to List collection and return
     }
-
+    public List<String> getAll(){
+        return userRepository.getAllUser();
+    }
     public User  createUser(User user)
     {
         return userRepository.save(user);

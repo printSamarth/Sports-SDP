@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +31,8 @@ public class UserController {
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping("/user")
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public List<String> getUsers() {
+        return userService.getAll();
     }
 
 
@@ -57,6 +58,7 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
+    @Transactional(readOnly = true)
     public ResponseEntity<User> login(@RequestBody User user) {
 
 
@@ -71,6 +73,7 @@ public class UserController {
             logger.info("[Login by user with id] - " + loggedIn.getUser_id());
 
 //               System.out.println("flag after:"+ check.isLog_status());
+            loggedIn.setTeamId(null);
             return ResponseEntity.ok(loggedIn);
         } else {
 //            logger.error("[Login by user failed] ");
