@@ -30,8 +30,8 @@ public class UserController {
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping("/user")
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public List<String> getUsers() {
+        return userService.getAll();
     }
 
 
