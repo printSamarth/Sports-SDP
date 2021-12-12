@@ -22,7 +22,7 @@ class TournamentList extends Component {
     async componentDidMount() {
         if(sessionStorage.getItem("user_id"))
         {
-            let response = await fetch('http://localhost:8081/api/tournament/', {
+            let response = await fetch('http://localhost:8081/api/getAllTournaments/', {
                 method: 'GET',
                 headers: {
                     'Accept': '*/*'

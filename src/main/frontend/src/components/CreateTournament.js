@@ -62,9 +62,13 @@ class CreateTournament extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        //const venue = {this.state.venue_id};
+        console.log("Venue ", this.state);
         let tournament = {gameName: this.state.sportName,
             maxTeams:this.state.noTeams,
-            teamCount:this.state.joinedTeam, timeTable: ""} ;  
+            teamCount:this.state.joinedTeam, timeTable: "", createdUserId: sessionStorage.getItem('user_id'),
+            venue: {venueId: this.state.venue_id}, activityDate: this.state.tournamentDate} ;
+
         console.log('activity => ' + JSON.stringify(tournament));
 
         // step 5is_admin_flag
@@ -203,7 +207,7 @@ class CreateTournament extends Component {
                                             
                                             <option value=""> -- Select a Venue -- </option>
                                             {this.state.venueData.map((data) => (
-                                            <option key={data.venue_id} value={data.venue_id}>
+                                            <option key={data.venue_id} value={data.venueId}>
                                                         {data.venueName+"-"+data.venueAddress}
                                                         </option>    
                                                                 ) )} 
