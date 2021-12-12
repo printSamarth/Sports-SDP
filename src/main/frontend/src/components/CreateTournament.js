@@ -87,8 +87,9 @@ class CreateTournament extends Component {
 
     changeDateHandler= (event) => {
         this.setState({tournamentDate: event.target.value});
-
-        VenueService.getVenue().then( res => {
+        const myDate = { "activityDate": event.target.value };
+        VenueService.getVenue(myDate).then( res => {
+            console.log(res.data);
             this.setState({venueData : res.data});
             //console.log(this.state.venueData[0].venue_id+"-"+this.state.venueData[0].venueName)
         })
