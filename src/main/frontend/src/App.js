@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -20,7 +20,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import First from './components/First';
 import TeamComponent from "./components/TeamComponent";
-
+import BookingList from "./components/BookingList";
 
 class App extends React.Component {
 
@@ -66,6 +66,7 @@ class App extends React.Component {
                 <Route path="/VenueList" component={VenueList}></Route>
                 <Route path="/Venueshow" component={Venueshow}></Route>
                 <Route path="/TeamComponent" component={TeamComponent}></Route>
+                <Route path="/BookingList" component={BookingList}></Route>
               </Switch>
             </div>
             {/*<FooterComponent/>*/}

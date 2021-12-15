@@ -72,21 +72,18 @@ class HeaderComponent extends Component {
                                     {/* <li className="nav-item">
           <a className="nav-link " href="" tabindex="-1" aria-disabled="true">Events</a>
         </li> */}
-
                                     <li className="nav-item">
                                         <Link to="/BookingList">
                                             <a className="nav-link " href="" tabindex="-1"  aria-disabled="true">Bookings</a>
                                         </Link>
                                     </li>
-                                </ul>
-
 
                                 <li className="nav-item">
                                     <Link to={"/userSignInComponent"}>
                                         <a className="nav-link " href="" tabindex="-1" onClick={this.logoutHandler} aria-disabled="true">Logout</a>
                                     </Link>
                                 </li>
-
+                                </ul>
                             </div>
                         </nav>
                     </header>
